@@ -2,3 +2,4 @@
 !.gitignore
 !*/
 !*.qmd
+!README.md
