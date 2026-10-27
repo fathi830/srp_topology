@@ -1,0 +1,280 @@
+---
+title: "Topology"
+subtitle: "Topology of Surfaces"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Connected Sum
+- Orientability
+  - Definition
+
+  - Orientable Genus (g)
+
+  - Real Projective Plane
+
+  - Non-orientable Genus (k)
+- The Klein Bottle
+  - Self-Intersection
+- The Classification Theorem
+
+## Introduction
+
+Last week, we introduced what a 2-manifold (surface) is and explored the basic properties of the Sphere, Torus, and Möbius Strip.
+
+This week, we will explore more on topological manifolds and what happens when we glue a Möbius strip to a sphere.
+
+Then, we will formalize topological tools and invariants that will allow us to unlock the Classification Theorem of Surfaces.
+
+## Connected Sum
+
+To build more complex surfaces from our basic building blocks, we use an operation called the **connected sum**, denoted by the symbol $\#$.
+
+::: block
+### Definition 10.1 (Connected Sum)
+
+The connected sum of two 2-manifolds $M_1$ and $M_2$, denoted as $M_1 \# M_2$, is formed by:
+
+1.  Removing a small open disk (homeomorphic to an open ball in $\mathbb{R}^2$) from the interior of both surfaces.
+2.  Gluing the surfaces together along their newly created circular boundaries (which are homeomorphic to $S^1$).
+:::
+
+\vspace{2mm}
+
+For example, taking the connected sum of two Tori ($T^2 \# T^2$) produces a "Torus with 2 holes". This operation allows us to generate entire families of surfaces.
+
+## Orientability
+
+Orientability is a topological invariant that we can use to distinguish surfaces.
+
+To determine if a surface is orientable, mathematicians look for a specific topological feature. 
+
+::: block
+### Definition 10.2 (Orientability via Subspace)
+
+Let $M$ be a topological 2-manifold.
+
+$M$ is said to be **non-orientable** if it contains a subspace $A \subset M$ such that $A$ is homeomorphic to the Möbius strip. Consequently, $M$ is **orientable** if no such subspace exists.
+:::
+
+\vspace{2mm}
+
+**Sphere (**$S^2$) & Torus ($T^2$): Both are **orientable** because it is impossible to find a Möbius strip embedded inside them.
+
+On the other hand, since a set is trivially a subset of itself, the Möbius strip is non-orientable.
+
+## Orientability: Orientable Genus ($g$)
+
+Before defining the genus or making cuts on a surface, we must formally define what a "cut" is.
+
+::: block
+### Definition 10.3 (Simple Closed Curve)
+
+A **simple closed curve** on a topological surface $M$ is a continuous mapping $f: S^1 \to M$ that is injective (one-to-one).
+:::
+
+\vspace{3mm}
+
+In other words, it is a continuous loop or a circle drawn on the surface that starts and ends at the same point without ever crossing or intersecting itself.
+
+In topology, drawing a simple closed curve is geometrically equivalent to embedding a 1-dimensional circle ($S^1$) onto our 2-manifold.
+
+## Orientability: Orientable Genus ($g$)
+
+To prove two orientable surfaces are not homeomorphic, we use a topological invariant called the **Genus** ($g$).
+
+::: block
+### Definition 10.4 (Genus via Simple Closed Curves)
+
+For a connected, closed surface $M$, the genus $g$ is defined as the **maximum number** of non-intersecting simple closed curves along which we can cut the surface without disconnecting it.
+:::
+
+\vspace{2mm}
+
+- **Sphere (**$S^2$): $g = 0$. Any single circular cut will instantly split the sphere into two disconnected pieces. Thus, it has zero holes.
+- **Torus (**$T^2$): $g = 1$. One circular cut opens it into a cylinder, keeping it as a single connected piece. A second cut would finally split it. Thus, it has exactly one hole.
+
+## Orientability: Real Projective Plane
+
+\vspace{3mm}
+
+What if the surface is non-orientable? The fundamental building block for all non-orientable closed surfaces is the **Real Projective Plane (**$\mathbb{RP}^2$).
+
+::: block
+### Definition 10.5 (The Real Projective Plane, $\mathbb{RP}^2$)
+
+The real projective plane is a non-orientable closed surface defined geometrically by taking a punctured sphere (a sphere with one hole) and gluing a Möbius strip along its circular boundary.
+:::
+
+\vspace{2mm}
+
+Because it contains a Möbius strip, the entire surface becomes non- orientable. It also cannot be embedded in 3D space without intersecting itself.
+
+![](week11/image3.png){fig-align="center" width="50%"}
+
+## Orientability: Non-orientable Genus ($k$)
+
+Just as we use genus $g$ (number of tori) for the orientable family, we use genus $k$ for the non-orientable family.
+
+::: block
+### Definition 10.6 (Non-Orientable Genus, $k$)
+
+For the non-orientable family, the genus $k$ represents the number of Real Projective Planes ($\mathbb{RP}^2$) that are glued together via connected sums.
+
+\vspace{3mm}
+
+*(Equivalently, it is the total number of Möbius strips glued to a punctured sphere).*
+:::
+
+\vspace{2mm}
+
+- If $k=1$, we get exactly one **Real Projective Plane**.
+- If we increase $k$, we generate entirely new non-orientable surfaces.
+
+## The Klein Bottle
+
+If $k=1$, we get the Real Projective Plane. But what happens if $k=2$?
+
+::: block
+### Definition 10.7 (The Klein Bottle, $k=2$)
+
+The Klein bottle is a closed, non-orientable surface formed by the connected sum of two Real Projective Planes ($\mathbb{RP}^2 \# \mathbb{RP}^2$).
+
+Equivalently, it can be constructed by gluing the edges of two Möbius strips together.
+:::
+
+\vspace{2mm}
+
+**Properties:**
+
+- It is a **closed surface** (compact, with no boundary).
+- It is **non-orientable** (has no inside or outside).
+- **Physical Reality:** Because it has no inside/outside, it cannot be embedded in our 3D space ($\mathbb{R}^3$) without intersecting itself. A true Klein bottle without self-intersection requires 4D space ($\mathbb{R}^4$).
+
+## 
+
+To visualize the Klein Bottle, mathematicians use two parameterizations depending on the dimension of the space:
+
+**1. The 3D Immersion (Figure-8 in** $\mathbb{R}^3$) This forces the surface into 3D space, causing it to self-intersect. $$ x = \cos(u) \left(3 + \cos\left(\frac{u}{2}\right)\sin(v) - \sin\left(\frac{u}{2}\right)\sin(2v)\right) $$ $$ y = \sin(u) \left(3 + \cos\left(\frac{u}{2}\right)\sin(v) - \sin\left(\frac{u}{2}\right)\sin(2v)\right) $$ $$ z = \sin\left(\frac{u}{2}\right)\sin(v) + \cos\left(\frac{u}{2}\right)\sin(2v) $$
+
+**2. The 4D True Embedding (in** $\mathbb{R}^4$) In 4D space, it exists purely without self-intersection using 4 coordinates: $$ x = (a + b\cos v)\cos u \quad \quad z = (b\sin v)\cos\left(\frac{u}{2}\right) $$ $$ y = (a + b\cos v)\sin u \quad \quad t = (b\sin v)\sin\left(\frac{u}{2}\right) $$ *(where* $a > b > 0$ and $u, v \in [0, 2\pi)$)
+
+## The Klein Bottle
+
+::::: columns
+::: {.column width="30%"}
+![](week11/image1.jpeg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="70%"}
+![](week11/image5.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## The Klein Bottle: Self-Intersection
+
+Notice how we mentioned that $\mathbb{RP}^2$ and the Klein Bottle must self-intersect in our 3D world ($\mathbb{R}^3$), and truly exist only in 4D ($\mathbb{R}^4$)? What does this mean?
+
+::: {.callout-note appearance="minimal" icon="false"}
+Imagine twisting a rubber band into a "figure-8" loop. In **3D space**, you can easily hold it so the strands pass over each other without touching.
+
+However, if you shine a light on it, its shadow on a **flat 2D wall** *must* intersect itself. The 2D space lacks the "depth" to avoid the crash.
+:::
+
+\vspace{2mm}
+
+The models of the Klein Bottle and $\mathbb{RP}^2$ we visualize are merely **3D shadows (immersions)** of 4D objects.
+
+Because they are squished into our limited 3-dimensional space, they are forced to crash into themselves. In true 4D space ($\mathbb{R}^4$), they use the 4th dimension to completely avoid intersection, just like the rubber band does in 3D.
+
+## The Klein Bottle: Self-Intersection
+
+::::: columns
+::: {.column width="50%"}
+![](week11/image6.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width="40%"}
+![](week11/image1.jpeg){fig-align="center"}
+:::
+:::::
+
+## The Classification Theorem
+
+By combining our topological tools and invariants, we arrive at one of the most beautiful results in topology:
+
+::: block
+### Theorem 10.8 (The Classification Theorem of Closed Surfaces)
+
+Any closed, connected surface is homeomorphic to exactly one surface from these two families:
+
+1.  **The Orientable Family:** The Sphere ($g=0$) or a connected sum of $g$ Tori ($g \ge 1$).
+2.  **The Non-Orientable Family:** A connected sum of $k$ Real Projective Planes ($k \ge 1$).
+:::
+
+::::: columns
+::: {.column width="50%"}
+**1. Orientable Family (**$g$):
+
+*(Formula:* $\chi = 2 - 2g$)
+
+\vspace{2mm}
+
+$g = 0$: The Sphere ($\chi = 2$)
+
+$g = 1$: The Torus ($\chi = 0$)
+
+$g = 2$: Double Torus ($\chi = -2$)
+:::
+
+::: {.column width="50%"}
+**2. Non-Orientable Family (**$k$):
+
+*(Formula:* $\chi = 2 - k$)
+
+\vspace{2mm}
+
+$k = 1$: $\mathbb{RP}^2$ ($\chi = 1$)
+
+$k = 2$: Klein Bottle ($\chi = 0$)
+
+$k = 3$: Dyck's Surface ($\chi = -1$)
+:::
+:::::
+
+## Summary
+
+\vspace{2mm}
+
+**Comparing our Surfaces:**
+
+| Surface          | Compact | Boundary | Closed | Orientable | Genus |
+|:-----------------|:-------:|:--------:|:------:|:----------:|:-----:|
+| **Sphere**       |   Yes   |   None   |  Yes   |    Yes     | $g=0$ |
+| **Torus**        |   Yes   |   None   |  Yes   |    Yes     | $g=1$ |
+| **Möbius Strip** |   Yes   |   Yes    |   No   |     No     |  N/A  |
+| **Klein Bottle** |   Yes   |   None   |  Yes   |     No     | $k=2$ |
+
+## 
+
+\begin{center}
+\Huge{Thank You}
+\end{center}

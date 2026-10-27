@@ -1,0 +1,301 @@
+---
+title: "Topology"
+subtitle: "Topological Spaces"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Definition of Topology
+
+- Open sets
+
+- Comparing topology
+
+  - Discrete
+
+  - Indiscrete
+
+  - Euclidean
+
+## Overview
+
+![](week3/figure0.png){fig-align="center" width="90%"}
+
+## Topological Spaces
+
+::: block
+### Definition 2.1
+
+Let $X$ be a non-empty set. A set $\tau$ of subsets of $X$ is said to be a **topology** on $X$ if:
+
+\vspace{4mm}
+
+\(i\) $X$ and the empty set, $\emptyset$, belong to $\tau$ (or simply $X,\emptyset\in\tau$),
+
+\(ii\) The union of any collection of sets in $\tau$ belongs to $\tau$, and
+
+\(iii\) The intersection of any finite collection of sets in $\tau$ belongs to $\tau$.
+
+\vspace{4mm}
+
+Then the pair $(X,\tau)$ is called a **topological space**.
+:::
+
+There are two things that make up a topological space;
+
+a set, $X$, and a collection, $\tau$, of subsets of $X$,
+
+that forms a topology on $X$.
+
+## Topological Spaces - Examples
+
+::::: columns
+::: {.column width="50%"}
+Let $X = \{a,b,c\}$ and
+
+$$\tau_1 = \{X,\emptyset,\{a\},\{a,b\}\}$$
+
+Then $\tau_1$ is a topology on $X$ as it satisfies all those 3 conditions.
+:::
+
+::: column
+![](week3/figure1.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## Topological Spaces - Examples
+
+::::: columns
+::: {.column width="50%"}
+Let $X = \{a,b,c\}$ and
+
+$$\tau_2 = \{X,\emptyset,\{a\},\{b\},\{a,b\},\{b,c\}\}$$
+
+Then $\tau_2$ is a topology on $X$ as it satisfies all those 3 conditions.
+:::
+
+::: column
+![](week3/figure2.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## Topological Spaces - Examples
+
+::::: columns
+::: {.column width="50%"}
+Let $X = \{a,b,c\}$ and
+
+$$\tau_3 = \{X,\emptyset,\{a\},\{c\},\{a,c\}\}$$
+
+Then $\tau_3$ is a topology on $X$ as it satisfies all those 3 conditions.
+:::
+
+::: column
+![](week3/figure3.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## Topological Spaces - Examples
+
+::::: columns
+::: {.column width="50%"}
+Let $X = \{a,b,c\}$ and
+
+$$\tau_4 = \{X,\emptyset,\{a\},\{b\},\{c\},\{a,b\}\}$$
+
+Then $\tau_4$ is not a topology on $X$ because $\{a\}\bigcup\{c\} = \{a,c\}$ but $\{a,c\}$ is not in $\tau_4$
+:::
+
+::: column
+![](week3/figure4.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## Open Set
+
+::: block
+### Definition 2.2
+
+Let $(X,\tau)$ be any topological space. Then the members of $\tau$ are said to be **open sets**.
+:::
+
+::: block
+### Proposition 2.3
+
+If $(X,\tau)$ be any topological space, then:
+
+\
+(i) $X$ and $\emptyset$ are open sets,
+
+\(ii\) The union of any collection of sets in $\tau$ is an open set, and
+
+\(iii\) The intersection of any finite collection of sets in $\tau$ is an open set.
+:::
+
+Clearly this proposition is trivial consequences of the Definition in first slide.
+
+## Discrete Topology
+
+::: {.callout-note appearance="minimal"}
+Let $X$ be a non-empty set. Define $\tau$ be a collection of all subsets of $X$ or
+
+$$\tau = \mathcal{P}(X)=\{U\,|\,U\subseteq X\}$$
+:::
+
+\vspace{2mm}
+
+Clearly this is a topology, since unions and intersections of subsets of $X$ are themselves subset of $X$ and therefore are in $\tau$ (by definition of $\tau$ in the box above).
+
+We call this the **discrete topology** on $X$, so then $(X,\tau)$ is a **discrete space**.
+
+This is the **largest topology** that we can define on $X$.
+
+::: {.callout-tip appearance="minimal"}
+Also, observe that $X$ can be any non-empty set. So there is an **infinite number** of discrete spaces - one for each set $X$.
+:::
+
+## Discrete Topology - Example
+
+::::: columns
+::: {.column width="50%"}
+Let $X = \{a,b,c\}$ and
+
+$$\tau = \{X,\emptyset,\{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\}\}$$
+
+\vspace{2mm}
+
+Then $\tau$ is a topology on $X$ as it satisfies all those 3 conditions,
+
+and since $\tau$ contains all of possible subsets of $X$, we said $\tau$ is a discrete topology on $X$.
+:::
+
+::: {.column width="50%"}
+![](week3/figure8.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## Discrete Topology (cont.)
+
+::: {.callout-note appearance="minimal"}
+If $X = \{a,b,c\}$ and $\tau$ is a topology on $X$ with $\{a\}\in\tau, \{b\}\in\tau\,\,\text{and}\,\,\{c\}\in\tau,$ then $\tau$ is a **discrete topology** on $X$.
+:::
+
+We already given that $\tau$ is a topology on $X$ so then it does satisfy **all three requirement** in the first definition.
+
+In this case, it is given that $\tau$ contains every singleton set in $X$, which here is $\{a\},\{b\}\,\text{and}\,\{c\}$. By definition of topological space, any union and finite intersection of those singleton set, is also belong to $\tau$ which here is $\emptyset\,,\{a,b\},\{a,c\},\{b,c\},\{a,b,c\}=X$. Observed that $\tau$ actually already contains all the possible subset of $X$, which is the definition of the **discrete topology**.
+
+::: {.callout-tip appearance="minimal"}
+If $(X,\tau)$ is a topological space that, for every $x\in X$, the **singleton set** $\{x\}$ is in $\tau$, then $\tau$ is the **discrete topology**.
+:::
+
+## Indiscrete Topology
+
+::: {.callout-note appearance="minimal"}
+Let $X$ be a non-empty set. Define
+
+$$\tau = \{\emptyset,X\}$$
+:::
+
+\vspace{4mm}
+
+Notice that $\tau$ satisfies all three of the conditions for being a topology, so it is a topology. However, if we remove either set, we no longer have a topology. \vspace{1mm}
+
+Thus $\{\emptyset,X\}$ is the **minimal topology** we can define on $X$. \vspace{1mm}
+
+For obvious reasons. it is called the **trivial topology** on $X$. \vspace{1mm}
+
+::: {.callout-warning appearance="minimal"}
+Also, it is called **indiscrete topology**, so then $(X,\tau)$ is said to be **indiscrete space**.
+:::
+
+## Discrete and Indiscrete Topology
+
+::: {.callout-caution appearance="minimal"}
+We can now realize that both discrete and indiscrete topology are the most extreme cases;
+
+$$\{\emptyset,X\} \subseteq \cdots \subseteq \mathcal{P}(X)$$
+:::
+
+Others interesting topology lie somewhere in the middle of them, and the number of topology available depends on how many elements in $X$;
+
+\(i\) if $|X|=1$, for instance $X=\{a\}$, there is only one topology with discrete = indiscrete.
+
+\(ii\) if $|X|=2$, for instance $X=\{a,b\}$, there are 4 different topology on $X$, which is $\,\,\,\,\,\,\,\,\,\{\emptyset,X\},\{\emptyset,X,\{a\}\},\{\emptyset,X,b\}\}\,\,\text{and}\,\,\{\emptyset,X,\{a\},\{b\}\} = \mathcal{P}(X)$.
+
+and it will increase quickly with $29$ choices for $|X|=3$, $355$ choices for $|X|=4$, $6942$ choices for $|X|=5$, $209 527$ choices for $|X|=6$, and so on
+
+## Euclidean Topology
+
+::: {.callout-note appearance="minimal"}
+A subset $S$ of $\mathbb{R}$ is said to be an open set in the euclidean topology, $\tau$, on $\mathbb{R}$, or $(\mathbb{R},\tau)$, if it has the following property:
+
+For each $x \in S$, there exist $a,b\in\mathbb{R}$, with $a<b$, such that $x\in (a,b)\subseteq S$.
+:::
+
+![](week3/figure5.png){fig-align="center" width="50%"}
+
+Whenever we refer to the topological space $\mathbb{R}$ without specifying the topology, we mean $\mathbb{R}$ with the euclidean topology.
+
+By that reason, it is also called the **standard topology** on $\mathbb{R}$.
+
+There are several remarks for this euclidean topology:
+
+## Euclidean Topology (cont.)
+
+::: {.callout-tip appearance="minimal"}
+\(i\) The "euclidean topology, $\tau$, on $\mathbb{R}$", is a topology, and therefore $(\mathbb{R},\tau)$ is a topological space.
+:::
+
+::: {.callout-tip appearance="minimal"}
+\(ii\) Every open interval is an open set in $\mathbb{R}$, but the converse not always true.
+:::
+
+For example, the set $(1,3)\bigcup (5,6)$ is an open set in $\mathbb{R}$, but it is not an open interval.
+
+::: {.callout-tip appearance="minimal"}
+\(iii\) For each $c,d\in\mathbb{R}$ with $c<d$, the closed interval $[c,d]$ is **not** an open set in $\mathbb{R}$.
+:::
+
+## Euclidean Topology (cont.)
+
+::: {.callout-tip appearance="minimal"}
+\(iv\) Let $r,s\in\mathbb{R}$ with $r<s$. In the euclidean topology, $\tau$, on $\mathbb{R}$, the open interval $(r,s)$ does indeed belong to $\tau$, so it is an open set.
+:::
+
+To prove that $(r,s)$ is an open set, let's take any point $x \in (r,s)$. We need to find an open interval $(a,b)$ that contains $x$ and fits entirely inside $(r,s)$.
+
+The simplest solution is to choose $(a,b)$ to be $(r,s)$ itself. Since the statement $x \in (r,s) \subseteq (r,s)$ is trivially true, it satisfies the definition perfectly.
+
+![](week3/figure6.png){fig-align="center" width="70%"}
+
+## Euclidean Topology (cont.)
+
+::: {.callout-tip appearance="minimal"}
+\(v\) The open intervals $(-∞,r)$ and $(r,∞)$ are open sets in $\mathbb{R}$, for every real number $r$.
+:::
+
+For the set $(-\infty, r)$, let's take any point $x \in (-\infty, r)$, which means $x < r$. We need to construct a finite open interval $(a,b)$ around $x$ that sits completely inside the set.
+
+We can simply set the lower limit $a = x-1$ and the upper limit $b = r$.
+
+Since $x$ is clearly inside $(x-1, r)$, and the interval stops exactly at $r$, the condition $x \in (x-1, r) \subseteq (-\infty, r)$ is satisfied.
+
+![](week3/figure7.png){fig-align="center" width="70%"}

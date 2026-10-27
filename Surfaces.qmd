@@ -1,0 +1,193 @@
+---
+title: "Topology"
+subtitle: "Introduction to surface"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Surface
+
+  - Definition
+
+  - Boundary of a Manifold
+
+  - Closed Surfaces
+
+- Examples
+
+  - Sphere
+
+  - Torus
+
+  - Möbius Strip
+
+## Introduction
+
+Up until now, our journey in topology has been focused on abstract concepts such as open sets, homeomorphisms, and compactness. We have treated topological spaces purely as collections of points and subsets.
+
+This week, we bridge the gap between Point-Set Topology and Manifolds. We will define the concept of **Topological Surfaces (2-Manifolds)**.
+
+We will explore spaces that locally behave exactly like the familiar flat 2D plane, yet globally twist, wrap, and glue together into profound geometric structures. By applying our previous tools, we can begin to formally construct and understand the fundamental shapes of our universe.
+
+## Introduction
+
+Before defining a surface, we must establish a few fundamental properties of topological spaces:
+
+::: block
+### Definition 9.1 (Topological Basis)
+
+A collection $\mathcal{B}$ of open sets is called a **basis** for a topology if *every* open set in the space can be written as a union of elements from $\mathcal{B}$.
+:::
+
+::: block
+### Definition 9.2 (Second-Countable Space)
+
+A topological space is **second-countable** if its topology has a basis consisting of a countable number of elements.
+:::
+
+::: block
+### Definition 9.3 (Hausdorff Space)
+
+A topological space $X$ is **Hausdorff** if for any two distinct points $x, y \in X$, there exist disjoint open sets $U$ and $V$ containing $x$ and $y$ respectively.
+:::
+
+## Definition of a Surface (2-Manifold)
+
+::: block
+### Definition 9.4 (Topological Surface)
+
+A topological surface, or **2-manifold**, is a topological space $X$ that satisfies three conditions:
+
+1.  **Hausdorff:** $X$ is a Hausdorff space.
+2.  **Second-Countable:** $X$ has a countable basis.
+3.  **Locally Euclidean (2D):** For every point $x \in X$, there exists an open neighborhood $U$ containing $x$ that is homeomorphic to an open ball in $\mathbb{R}^2$.
+:::
+
+\vspace{3mm}
+
+The "Locally Euclidean" condition is the defining signature of a manifold.
+
+It guarantees that despite any complex global curvature, the immediate neighborhood of any point is indistinguishable from a flat 2D plane ($\mathbb{R}^2$).
+
+## Boundary of a Manifold and Closed Surfaces
+
+For manifold, the term "boundary" is strictly geometric and differs from the set-theoretic boundary ($\bar{A} \setminus \mathring{A}$).
+
+Now we use the **Upper Half-Plane** $\mathbb{H}^2 = \{(x, y) \in \mathbb{R}^2 \mid y \ge 0\}$.
+
+::: block
+### Definition 9.5 (Manifold with Boundary)
+
+A 2-manifold with boundary is a space where every point has a neighborhood homeomorphic to an open set in either $\mathbb{R}^2$ or $\mathbb{H}^2$. The **boundary** ($\partial M$) consists of all points that map to the x-axis ($y=0$) of $\mathbb{H}^2$.
+:::
+
+::: block
+### Definition 9.6 (Closed Surface)
+
+A **closed surface** is formally defined as a surface that is **compact** and has **no boundary** (i.e., $\partial M = \emptyset$).
+:::
+
+## Boundary of a Manifold and Closed Surfaces (cont.)
+
+![](week10/image8.png){fig-align="center" width="100%"}
+
+## The Sphere ($S^2$)
+
+::: block
+### Definition 9.7 (The 2-Sphere)
+
+The standard sphere $S^2$ of radius $r > 0$ is defined as the set of all points in $\mathbb{R}^3$ that are at a distance $r$ from the origin: $$ S^2 = \{(x,y,z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 = r^2\} $$
+:::
+
+**Topological Properties:**
+
+- **Compactness:** By the Heine-Borel Theorem, $S^2$ is **compact** because it is both *closed* (contains its limit points) and *bounded*.
+- **Connectedness:** It is **path-connected**.
+- **Boundary:** It is a **closed surface** (Compact + No boundary).
+
+## The Sphere ($S^2$)
+
+![](week10/image6.png){fig-align="center" width="100%"}
+
+## The Torus ($T^2$)
+
+The **Torus** can be visualised geometrically in $\mathbb{R}^3$ by taking a 2D circle and revolving it around an axis (like a donut).
+
+::: block
+### Definition 9.8 (The Torus)
+
+Let $R$ be the distance from the center of the hole to the tube's center, and $r$ be the tube's radius. $$ T^2 = \{(x,y,z) \in \mathbb{R}^3 \mid (\sqrt{x^2 + y^2} - R)^2 + z^2 = r^2\} $$ *(assuming* $R > r > 0$)
+:::
+
+**Comparing the Torus and the Sphere:**
+
+- **Similarities:** Just like the sphere, the Torus in $\mathbb{R}^3$ is **compact**, **path-connected**, and is a **closed surface** (no boundary).
+- **Differences:** As we will formally define later, the Torus has **Genus** $g = 1$.
+
+## The Torus ($T^2$)
+
+![](week10/image5.png){fig-align="center" width="100%"}
+
+## The Möbius Strip in $\mathbb{R}^3$
+
+The **Möbius Strip** can be embedded in $\mathbb{R}^3$ by sweeping a line segment around a central circle, while continuously giving it a half-twist.
+
+::: block
+### Definition 9.9 (The Möbius Strip)
+
+Let $R$ be the radius of the central circle, $u \in [0, 2\pi]$ and $v \in [-w, w]$. The surface is defined by: $$ x(u,v) = \left( R + v \cos\left(\frac{u}{2}\right) \right) \cos u $$ $$ y(u,v) = \left( R + v \cos\left(\frac{u}{2}\right) \right) \sin u $$ $$ z(u,v) = v \sin\left(\frac{u}{2}\right) $$
+:::
+
+## The Möbius Strip in $\mathbb{R}^3$ (cont.)
+
+::::: columns
+::: {.column width="50%"}
+\vspace{3mm}
+
+**Topological Properties:**
+
+- **Compact and Connected:** It is closed and bounded (hence **compact**) and **path-connected**.
+- **Surface WITH Boundary:** Unlike the Sphere and Torus, the Möbius strip is NOT a closed surface. It has exactly **one continuous boundary edge** ($\partial M \neq \emptyset$).
+- **One-Sidedness:** An ant walking straight along the strip will travel across both the "outside" and the "inside" without ever crossing the boundary edge.
+:::
+
+::: {.column width="50%"}
+![](week10/image7.png){fig-align="center" width="36%"}
+:::
+:::::
+
+## Summary
+
+\vspace{2mm}
+
+**Comparing our 2-Manifolds:**
+
+| Surface            | Compact | Connected |   Boundary   | Closed |
+|:-------------------|:-------:|:---------:|:------------:|:------:|
+| **Sphere (**$S^2$) |   Yes   |    Yes    |     None     |  Yes   |
+| **Torus (**$T^2$)  |   Yes   |    Yes    |     None     |  Yes   |
+| **Möbius Strip**   |   Yes   |    Yes    | Yes (1 edge) |   No   |
+
+## 
+
+\begin{center}
+\Huge{Thank You}
+\end{center}

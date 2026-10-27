@@ -1,0 +1,342 @@
+---
+title: "Topology"
+subtitle: "Continuous Function"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Continuity in Calculus
+
+- Continuity in Analysis
+
+  - Relation
+
+- Continuity in Topology
+
+  - Example
+  - Properties
+
+## Introduction
+
+Now that we have defined various concepts related to topological spaces and their subsets, we would like to consider functions sending one topological space to another.
+
+The concept of continuity of functions is one of the most important in topology.
+
+The concept of a continuous function is basic to much of mathematics. Continuous functions on the real line appear in the first pages of any calculus book, and continuous functions in the plane and in space follow not far behind. More general kinds of continuous functions arise as one goes further in mathematics.
+
+## Continuity in Calculus
+
+In calculus, a **continuous function** is a real-valued function whose graph does not have any **breaks** or **holes**.
+
+Thus, simply **drawing** the graph might tell you if the function is continuous or not.
+
+However, not all functions are easy to draw, and so we will need to use the **definition of continuity** to determine a function's continuity.
+
+::: block
+### Definition 5.1
+
+For a function $f(x)$ to be continuous at a point $a$, it must satisfy all these conditions:
+
+\(i\) $f(a)$ exists,
+
+\(ii\) $\lim_{x \to a} f(x)$ exists (means $\lim_{x \to a^+} f(x)= \lim_{x \to a^-} f(x)$), and
+
+\(iii\) $\lim_{x \to a} f(x) = f(a)$
+:::
+
+## Continuity in Analysis
+
+\vspace{1mm}
+
+::: block
+### Definition 5.2
+
+A function $f: \mathbb{R} \rightarrow \mathbb{R}$ is continuous if for every $x_0 \in \mathbb{R}$ and every $\epsilon>0$, there exists a $\delta>0$ such that if $|x-x_0|< \delta$, then $|f(x)-f(x_0)|< \epsilon$.
+:::
+
+$f$ is continuous if for every $x_0$ and $\epsilon$, we can find a $\delta$ so that $x$ is close enough to $x_0$ (within $\delta$), then $f(x)$ is close enough to $f(x_0)$ (within $\epsilon$).
+
+\vspace{1mm}
+
+This is often called the $\epsilon - \delta$ definition of continuity.
+
+::::: columns
+::: column
+![](week6/image1.png){fig-align="center" width="100%"}
+:::
+
+::: column
+![](week6/image2.png){fig-align="center" width="100%"}
+:::
+:::::
+
+## Continuity in Analysis - Relation
+
+\vspace{1mm}
+
+::: {.callout-note appearance="minimal"}
+Consider a function $f(x)=x^2$ defined on the domain $A=\{1,2,3\}$.
+
+Is it continuous at the point $x=2$?
+:::
+
+- If we use the Calculus definition of continuity, it fails because $\lim_{x \to 2}f(x)$ is **undefined**.
+
+Since $2$ is an **isolated point**, there are no neighboring values to approach it from, so the **limit doesn't exist**. (Calculus strictly requires the point to be a limit point).
+
+- However, using the $\epsilon-\delta$ definition, we can choose $\delta = 0.5$. The condition
+
+  $|x-2|<0.5 \,\,\,(1.5<x<2.5)\implies |f(x)-f(2)|<\epsilon$ passes.
+
+Since $x=2$ is the **only** point in the **domain** that lies within this interval, the condition is automatically satisfied for any $\epsilon > 0$.
+
+**Definition of continuity in calculus is a special case of what analysis define.**
+
+## Continuity in Analysis - Relation
+
+The Limitation of $\epsilon-\delta$: Metric Dependence
+
+The $\epsilon-\delta$ definition strictly requires a notion of **distance** (Metric).
+
+As mapping dimensions change, the distance formula must be modified:
+
+- $f: \mathbb{R} \to \mathbb{R}$ (Real line) $\implies |x - y|$
+- $f: \mathbb{R} \to \mathbb{R}^2$ (Parametric curves) $\implies \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2}$
+- $f: \mathbb{R}^n \to \mathbb{R}^m$ (Higher dimensions) $\implies$ *Formulas become increasingly complex*
+
+::: {.callout-note appearance="minimal"}
+"The $\epsilon-\delta$ definition does not generalize to arbitrary spaces."
+
+\vspace{2mm}
+
+How do we define continuity in an abstract topological space where **no distance formula exists** at all?
+:::
+
+## Continuity in Topology
+
+::: block
+### Definition 5.3
+
+Let $X$ and $Y$ be topological spaces. A function $f:X \to Y$ is **continuous** if $f^{-1}(V)$ is **open** in $X$ for every open set $V$ in $Y$.
+:::
+
+We call this the **open set definition of continuity**. Paraphrased, it states that $f$ is **continuous** if the **pre-image** of every open set **is open**.
+
+A topology on a set is a structure that establishes a **notion of closeness** on the set.
+
+Continuous functions between topological spaces **preserve closeness**, reflecting the idea that a continuous function sends points that are **close** **in one space** to points that are **close in the other**.
+
+## Continuity in Topology - Example
+
+\vspace{3mm}
+
+::: {.callout-note appearance="minimal"}
+Let $X=\{a,b,c,d\}$ and $Y=\{1,2,3\}$ have the topologies
+
+$\tau_X=\{X,\emptyset,\{a,b\},\{c,d\},\{a,b,c\},\{c\}\}$ and
+
+$\tau_Y=\{Y,\emptyset,\{1,2\},\{1\},\{2\}\}$
+
+respectively. Let the functions $f,g,h:X \to Y$ be defined by:
+
+$$f(a)=1,\,\,\,f(b)=1,\,\,\,f(c)=2,\,\,\,f(d)=2,$$
+
+$$g(a)=2,\,\,\,g(b)=2,\,\,\,g(c)=1,\,\,\,g(d)=3,$$
+
+$$h(a)=1,\,\,\,h(b)=2,\,\,\,h(c)=2,\,\,\,h(d)=3.$$
+:::
+
+The functions $f$ and $g$ are continuous.
+
+However, $h$ is not continuous because $\{2\}$ is open in $Y$, but $h^{-1}(\{2\})=\{b,c\}$ is not open in $X$.
+
+## Continuity in Topology - Example
+
+::: {.callout-note appearance="minimal"}
+The functions $f(x)=x+2$, $g(x)= 2x$, and $h(x)=x^2$ are all continuous functions mapping $\mathbb{R}$ to $\mathbb{R}$ in the standard topology.
+:::
+
+This is because we define open set in standard topology by any open interval. So take any image $V=(a,b)$ which is open.
+
+\vspace{2mm}
+
+For $f$, the image is $y=x+2$, then rearrange to get the pre-image, $x=y-2$.
+
+Since $y$ lies in the interval $(a,b)$, means $a<y<b$.
+
+Then $a-2<y-2<b-2$ and this is equivalent to $a-2<x<b-2$, so $x$ lies in the interval $(a-2,b-2)$.
+
+## Continuity in Topology - Example
+
+::: {.callout-note appearance="minimal"}
+The functions $f(x)=x+2$, $g(x)= 2x$, and $h(x)=x^2$ are all continuous functions mapping $\mathbb{R}$ to $\mathbb{R}$ in the standard topology.
+:::
+
+$$f^{-1}((a,b))=(a-2,b-2),$$
+
+$$g^{-1}((a,b))=(\frac{a}{2},\frac{b}{2}),$$
+
+$$h^{-1}((a,b))=
+\begin{cases}
+    (-\sqrt{b},-\sqrt{a})\cup(\sqrt{a},\sqrt{b}) & \text{if } a ≥ 0, \\
+    (-\sqrt{b},\sqrt{b})  & \text{if } a<0\text{ and }b>0, \\
+    \emptyset & \text{if } b≤0.
+\end{cases}$$
+
+## Continuity in Topology - Properties
+
+::: block
+### Theorem 5.4
+
+Let $X$ and $Y$ be topological spaces.
+
+\(i\) The identity function $id:X \to X$, given by $id(x)=x$, is continuous.
+
+\(ii\) Pick $y_0 \in Y$, and consider the constant function, $C:X \to Y$, defined by $C(x) = y_0$ for every $x \in X$. Then $C$ is continuous.
+:::
+
+- For (i), it is clear that if an image is open, then its pre-image is also open as they are the same set with the same topology.
+
+\vspace{3mm}
+
+- For (ii), to show that $C$ is continuous, suppose that $V \subset Y$ is open;
+
+  then $C^{-1}(V)=X$ if $y_0 \in V$, and $C^{-1}(V)=\emptyset$ if $y_0 \notin V$.
+
+  In either case $C^{-1}(V)$ is open in $X$, and therefore $C$ is continuous.
+
+## Continuity in Topology - Properties
+
+\vspace{3mm}
+
+::: block
+### Theorem 5.5
+
+Let $f$ and $g$ be continuous functions, Then
+
+\(i\) $f(x)+g(x)$ is continuous,
+
+\(ii\) $f(x)\cdot g(x)$ is continuous.
+:::
+
+::: block
+### Theorem 5.6
+
+Let $\mathbb{R}$ have the standard topology. Then every polynomial function $p:\mathbb{R} \to \mathbb{R}$, with $p(x)=a_nx^n+a_{n-1}x^{n-1}+\ldots +a_1x+a_0$, is continuous.
+:::
+
+From Theorem 5.4, we know that $f(x)=x$ is continuous. So by Theorem 5.5, $x\cdot x=x^2$ is continuous, and so on.
+
+Then also by Theorem 5.4, $C(x)=y_0$ (constant function) is continuous. So by Theorem 5.5, $y_0\cdot x=y_0x$ is continuous.
+
+Lastly, by Theorem 5.5, if we add all of these continuous functions, it will result in a continuous function.
+
+## Continuity in Topology - Properties
+
+::: block
+### Theorem 5.7
+
+Let $X$ and $Y$ be topological spaces. A function $f:X \to Y$ is continuous if and only if $f^{-1}(C)$ is closed in $X$ for every closed set $C \subset Y$.
+:::
+
+::: block
+### Theorem 5.8
+
+Let $f:X \to Y$ and $g:Y \to Z$ be continuous. Then the composition function, $g\circ f: X \to Z$, is continuous.
+:::
+
+::: {.callout-note appearance="minimal"}
+**IMPORTANT NOTE**: A continuous function does not necessarily map open sets to open sets. For example, the function $f: \mathbb{R} \to \mathbb{R}$, given by $f(x) = x^2$ is continuous, but the image of the open set $(-1, 1)$ is $[0, 1)$, which is not open.
+:::
+
+## Continuity in Topology - Properties
+
+\vspace{3mm}
+
+::: block
+### Theorem 5.9
+
+Let $X$ and $Y$ be topological spaces. A function $f:X \to Y$ is continuous if and only if $\forall x \in X$ and every open set $U$ containing $f(x)$, $\exists$ a neighborhood $V$ of $x$ such that $f(V) \subset U$.
+:::
+
+In this Theorem, we can see the open set $U$ is playing the role of $\epsilon$-interval in $\epsilon - \delta$ definition of continuity, and the open set $V$ playing the role of the $\delta$-interval.
+
+It is straightforward to show that for function a $f:\mathbb{R} \to \mathbb{R}$, the $\epsilon - \delta$ definition of continuity is equivalent to the open set definition of continuity.
+
+![](week6/image3.png){fig-align="center" width="54%"}
+
+## Continuity in Topology - Properties
+
+\vspace{1mm}
+
+Recall the $\epsilon-\delta$ condition: If $|x-c|<\delta$, then $|f(x)-f(c)|<\epsilon$.
+
+\vspace{2mm}
+
+- **Step 1:** Translating $\epsilon$ to $U$. The inequality $|f(x)-f(c)|<\epsilon$ represents an open interval $(f(c)-\epsilon, f(c)+\epsilon)$ on the $y$-axis. In standard topology, this acts as the **open set** $U$ containing $f(c)$.
+
+\vspace{2mm}
+
+- **Step 2:** Translating $\delta$ to $V$. The inequality $|x-c|<\delta$ represents an open interval $(c-\delta, c+\delta)$ on the $x$-axis. This acts as the **open set** $V$ (or neighborhood) containing $c$.
+
+\vspace{2mm}
+
+- **Step 3:** Translating the Implication. The statement "If $x$ is within the $\delta$-interval, then $f(x)$ is within the $\epsilon$-interval" translates directly to: "If $x \in V$, then $f(x) \in U$."
+
+\vspace{2mm}
+
+::: {.callout-note appearance="minimal"}
+This means all elements of $V$ map entirely inside $U$, which is exactly the definition of the subset condition: $f(V) \subset U$.
+:::
+
+## 
+
+\begin{center}
+\Huge Thank You
+\end{center}
+
+## Appendix A - Proof of Theorem 5.7
+
+$Proof$ (Theorem 5.7). We will use the set theory property: $f^{-1}(Y \setminus C) = X \setminus f^{-1}(C)$.
+
+**(**$\implies$) Forward direction: Suppose $f: X \to Y$ is continuous. Let $C$ be a closed set in $Y$. By definition of closed sets, its complement $V = Y \setminus C$ is open in $Y$. Since $f$ is continuous, the pre-image of the open set $V$, which is $f^{-1}(V)$, must be open in $X$. Notice that: $$f^{-1}(V) = f^{-1}(Y \setminus C) = X \setminus f^{-1}(C)$$ Since $X \setminus f^{-1}(C)$ is open in $X$, its complement, $f^{-1}(C)$, is by definition **closed** in $X$.
+
+**(**$\impliedby$) Backward direction: Suppose $f^{-1}(C)$ is closed in $X$ for every closed set $C \subset Y$. Let $V$ be an open set in $Y$. Its complement $C = Y \setminus V$ is closed in $Y$. By our assumption, $f^{-1}(C)$ is closed in $X$. Notice that: $$f^{-1}(C) = f^{-1}(Y \setminus V) = X \setminus f^{-1}(V)$$ Since $X \setminus f^{-1}(V)$ is closed in $X$, its complement, $f^{-1}(V)$, is **open** in $X$. Because the pre-image of every open set $V$ is open, $f$ is **continuous**. $\blacksquare$
+
+## Appendix B - Proof of Theorem 5.8
+
+*Proof* (Theorem 5.8). We want to show that the composition $g \circ f : X \to Z$ is continuous. By the open set definition of continuity, we must show that the pre-image of any open set in $Z$ is open in $X$.
+
+Let $W$ be an arbitrary open set in $Z$. Because $g: Y \to Z$ is continuous, the pre-image of $W$ under $g$, denoted as $g^{-1}(W)$, is **open** in $Y$.
+
+Let $V = g^{-1}(W)$. We know $V$ is an open set in $Y$. Because $f: X \to Y$ is continuous, the pre-image of $V$ under $f$, denoted as $f^{-1}(V)$, is **open** in $X$.
+
+By the property of composite functions, the pre-image of $W$ under $(g \circ f)$ is: $$(g \circ f)^{-1}(W) = f^{-1}(g^{-1}(W)) = f^{-1}(V)$$
+
+Since we have already established that $f^{-1}(V)$ is open in $X$, it follows that $(g \circ f)^{-1}(W)$ is open in $X$. Therefore, the composition function $g \circ f$ is **continuous**. $\blacksquare$
+
+## Appendix C - Proof of Theorem 5.9
+
+$Proof$(Theorem 5.9).
+
+**(**$\implies$) Forward direction: First, suppose that the open set definition holds for functions $f: X → Y$. Let $x \in X$ and an open set $U\subset Y$ containing $f(x)$ be given. Set $V = f^{-1}(U)$. It follows that $x \in V$ and that $V$ is open in $X$ since $f$ is continuous by the open set definition. Clearly $f (V) \subset U$, and therefore we have shown the desired result.
+
+**(**$\impliedby$) Backward direction: Now assume that for every $x \in X$ and every open set $U$ containing $f(x)$, there exists a neighborhood $V$ of $x$ such that $f (V) \subset U$. We show that $f^{-1} (W)$ is open in $X$ for every open set $W$ in $Y$. Thus let $W$ be an arbitrary open set in $Y$. To show that $f^{-1} (W)$ is open in $X$, choose an arbitrary $x \in f^{-1}(W)$. It follows that $f(x) \in W$, and therefore there exists a neighborhood $V_x$ of $x$ in $X$ such that $f(V_x) \subset W$, or, equivalently, such that $V_x \subset f^{-1}(W)$. Thus, for an arbitrary $x \in f^{-1} (W)$ there exists an open set $V_x$ such that $x \in V_x \subset f^{-1}(W)$. and by definition of open set, it implies that $f^{-1}(W)$ is open in $X$. $\blacksquare$

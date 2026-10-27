@@ -1,0 +1,232 @@
+---
+title: "Topology"
+subtitle: "Interior and Closure"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Limit points
+- Closure points
+- Interior points
+- Dense sets
+
+## Introduction
+
+On the real line, we intuitively understand "closeness" using distance.
+
+- The sequence $0.9, 0.99, 0.999, \dots$ gets closer and closer to $1$.
+- We say $1$ is the **limit point** of this sequence.
+- For the open interval $(0,1)$, the point $1$ is "infinitely close" to the set, yet $1 \notin (0,1)$.
+
+But in a general topological space, we do not have a metric (distance), so how do we define "closeness" without measuring distance?
+
+## Limit Points
+
+We use open sets (neighborhoods).
+
+::: {.callout-warning appearance="minimal"}
+"$U$ is an open set containing $x$" can be shorten to "$U$ is a neighborhood of $x$"
+:::
+
+::: {.callout-warning appearance="minimal"}
+If $(X,\tau)$ is a topological space, we refer to the elements of $X$ as **points**.
+:::
+
+::: block
+### Definition 3.1
+
+Let $A$ be a subset of a topological space, $(X,\tau)$. A point $x \in X$ is said to be a **limit point** of $A$ if every open set $U$ containing $x$ also contains at least one point of $A$ different from $x$.
+
+Mathematically: $$(U \setminus \{x\}) \cap A \neq \emptyset$$
+:::
+
+## Limit points - Finite Example
+
+Consider the space $X = \{a,b,c,d,e\}$ with topology: $\tau = \{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e\}\}$ and let $A=\{a,b,c\}$.
+
+So we may check one by one using the definition 3.1:
+
+- For $a$: $(X\setminus\{a\})\cap A = \{b,c\}$, $(\{a,c,d\}\setminus\{a\})\cap A = \{c\}$ but $(\{a\}\setminus\{a\})\cap A = \emptyset$, so $a$ is not limit point of $A$. 
+- For $b$: $(X\setminus\{b\})\cap A = \{a,c\}$ and $(\{b,c,d,e\}\setminus\{b\})\cap A = \{c\}$, so $b$ is a limit point of $A$. 
+- For $e$: $(X\setminus\{e\})\cap A = \{a,b,c\}$ and $(\{b,c,d,e\}\setminus\{e\})\cap A = \{b,c\}$, so $e$ is a limit point of $A$.
+
+After going through all points, we will find that $d$ is also a limit point of $A$, but $c$ isn't.
+
+::: {.callout-tip appearance="minimal"}
+To show that $x$ is not a limit point of $A$, it suffices to find even one open set which contains $x$ but contains no other point of $A$.
+:::
+
+## Limit points - Extreme Spaces
+
+::: {.callout-note appearance="minimal"}
+**Discrete Space:** Let $(X,\tau)$ be a discrete space and $A \subseteq X$. Then $A$ has **no** limit points.
+:::
+
+*Proof:* For each $x \in X$, the singleton $\{x\}$ is an open set. Since $\{x\} \setminus \{x\} \cap A = \emptyset$, no point can be a limit point. Every point is isolated.
+
+::: {.callout-note appearance="minimal"}
+**Indiscrete Space:** Let $(X,\tau)$ be an indiscrete space and $A \subseteq X$ with $|A| \geq 2$. Then **every** point of $X$ is a limit point of $A$.
+:::
+
+*Proof:* The only non-empty open set is $X$. Since $A$ has at least two elements, $X \setminus \{x\}$ will always intersect with the remaining elements of $A$.
+
+## Limit points - Euclidean Space
+
+::: {.callout-note appearance="minimal"}
+**Euclidean Space:** Let $(\mathbb{R},\tau)$ be the standard topology and $A=[a,b) \subset \mathbb{R}$. Then every element in $[a,b]$ is a limit point of $A$.
+:::
+
+*Notice:* The boundary point $b$ is a limit point even though $b \notin A$. Any open interval $(b-\epsilon, b+\epsilon)$ will always intersect with the set $[a,b)$.
+
+::: {.callout-warning appearance="minimal"}
+We called the set of all limit points of $A$ as derived set, denoted by $A'$.
+:::
+
+And this leads us to our next concept, if a set is "missing" its limit points (like point $b$), how do we "patch" it up?
+
+## Closure Points
+
+To complete a set, we unite it with all of its limit points. This forms the closure of the set.
+
+::: block
+### Definition 3.2
+
+Let $A$ be a subset of a topological space $(X,\tau)$. The set $A \cup A'$ (the union of $A$ and the set of all its limit points, $A'$) is called the **closure** of $A$ and is denoted by $Cl(A)$ or $\overline{A}$:
+
+$$Cl(A)=\overline{A}=A \cup A'$$
+:::
+
+::: block
+### Proposition 3.3
+
+Alternatively, the closure of $A$ is the **intersection** of all sets containing $A$ and its complement is an open set:
+
+$$Cl(A) = \overline{A} = \bigcap \{F \mid X \setminus F \text{ is an open set and } A \subseteq F\}$$
+:::
+
+## Closure points - Example (via Definition 3.2)
+
+Let's use the previous space $X = \{a,b,c,d,e\}$ with topology: $\tau = \{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e\}\}$ and subset $A=\{a,b,c\}$.
+
+From our previous calculation, we found the limit points of $A$:
+
+- $b, d,$ and $e$ are limit points of $A$.
+
+- $a$ and $c$ are not limit points.
+
+So, the derived set (collection of all limit points) is $A' = \{b,d,e\}$.
+
+Now, using definition 3.2:
+
+$$Cl(A) = A \cup A'$$ $$Cl(A) = \{a,b,c\} \cup \{b,d,e\}$$ $$Cl(A) = \{a,b,c,d,e\} = X$$
+
+## Closure points - Example (cont.)
+
+Then lets check with proposition 3.3,$Cl(A) = \bigcap \{F \mid X \setminus F \text{ is an open set and } A \subseteq F\}$
+
+$X = \{a,b,c,d,e\}$, $\tau = \{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e\}\}$ and subset $A=\{a,b,c\}$.
+
+First, list all the complements of open sets in $X$: $\{\emptyset, X, \{b,c,d,e\}, \{a,b,e\}, \{b,e\}, \{a\}\}$
+
+1.  Next, check whether $A = \{a,b,c\}$ is a subset of it or not:
+
+    - Does $A \subseteq\{b,c,d,e\}$? No (missing $a$).
+    - Does $A \subseteq\{a,b,e\}$? No (missing $c$).
+    - The **only** complement of open set that contains $\{a,b,c\}$ is $X$.
+
+2.  Finally, find the intersection of these sets: $$Cl(A) = \bigcap \{X\} = X$$
+
+Both methods yield $Cl(A) = X$.
+
+## Interior Points
+
+We define the interior as the largest open set contained within $A$.
+
+::: block
+### Definition 3.4
+
+Let $A$ be a subset of a topological space $(X,\tau)$. The **interior** of $A$, denoted by $Int(A)$ or $\mathring{A}$, is the union of all open sets contained in $A$:
+
+$$Int(A) = \mathring{A} = \bigcup \{U \in \tau \mid U \subseteq A\}$$
+:::
+
+::: {.callout-tip appearance="minimal"}
+Since the arbitrary union of open sets is always open, $Int(A)$ is guaranteed to be an **open set**. In fact, it is the largest open set contained in $A$.
+:::
+
+## Interior points - Example
+
+Using previous space, $X = \{a,b,c,d,e\}$ with $\tau = \{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e\}\}$ and subset $A=\{a,b,c\}$.
+
+**Goal: Find** $Int(A) = \bigcup \{U \in \tau \mid U \subseteq \{a,b,c\}\}$
+
+1.  We examine every open set $U \in \tau$ to see if it fits entirely inside $A$:
+    - $\emptyset \subseteq \{a,b,c\}$? **Yes.**
+    - $\{a\} \subseteq \{a,b,c\}$? **Yes.**
+    - $\{c,d\} \subseteq \{a,b,c\}$? **No** (contains $d$).
+    - $\{a,c,d\} \subseteq \{a,b,c\}$? **No** (contains $d$).
+    - $\{b,c,d,e\} \subseteq \{a,b,c\}$? **No** (contains $d, e$).
+    - $X \subseteq \{a,b,c\}$? **No.**
+2.  Now, take the union of all the valid open sets we found: $$Int(A) = \emptyset \cup \{a\} = \{a\}$$
+
+So, the interior of $A$ is simply the singleton set $\{a\}$.
+
+## Dense Sets
+
+What happens when the closure of a small set ends up covering the entire topological space? We give it a special name. \vspace{3mm}
+
+::: block
+### Definition 3.5
+
+Let $A$ be a subset of a topological space $(X, \tau)$. Then $A$ is said to be **dense** in $X$ (or everywhere dense in $X$) if: $$Cl(A) = \overline{A} = X$$
+:::
+
+**Recall our previous example:** In the space $X = \{a,b,c,d,e\}$, we tested the subset $A = \{a,b,c\}$. We calculated that its closure is $Cl(A) = X$. Therefore, by Definition 3.5, the set $A = \{a,b,c\}$ is **dense** in $X$.
+
+## Dense sets (cont.)
+
+::: block
+### Theorem 3.6
+
+$\overline{\mathbb{Q}} = \mathbb{R}$ (i.e., $\mathbb{Q}$ is dense in $\mathbb{R}$).
+:::
+
+Proof (by Contradiction):
+
+1\. Suppose $\overline{\mathbb{Q}} \neq \mathbb{R}$. Then there exists a point $x \in \mathbb{R} \setminus \overline{\mathbb{Q}}$.
+
+2\. Since the complement of $\overline{\mathbb{Q}}$, $\mathbb{R} \setminus \overline{\mathbb{Q}}$, is an open set, therefore, there exists an open interval $(a, b)$ such that $x \in (a, b) \subseteq \mathbb{R} \setminus \overline{\mathbb{Q}}$.
+
+3\. However, we know that between any two real numbers, there is always a rational number $q$. So, $q \in (a,b)$.
+
+4\. This implies $q \in \mathbb{R} \setminus \overline{\mathbb{Q}}$, meaning $q \notin \overline{\mathbb{Q}}$.
+
+5\. This is a **contradiction**, because $q \in \mathbb{Q} \subseteq \overline{\mathbb{Q}}$ ($\overline{\mathbb{Q}}= \mathbb{Q}\cup \mathbb{Q}'$). Hence, $\overline{\mathbb{Q}} = \mathbb{R}$.
+
+## Dense sets (cont.)
+
+::: block
+### Proposition 3.7
+
+Let $A$ be a subset of a topological space $(X, \tau)$. Then $A$ is **dense** in $X$ if and only if every non-empty open subset of $X$ intersects $A$ non-trivially.
+
+Mathematically: $$\overline{A} = X \iff \text{For every } U \in \tau \text{ where } U \neq \emptyset, \text{ then } U \cap A \neq \emptyset$$
+:::

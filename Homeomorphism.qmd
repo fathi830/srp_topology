@@ -1,0 +1,223 @@
+---
+title: "Topology"
+subtitle: "Homeomorphism"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Topological Equivalence
+
+- Invariants
+
+- Example
+
+## Introduction
+
+In standard geometry, two shapes are considered equivalent if they share the same lengths and angles. In topology, the rules change entirely.
+
+Last week, we learned that continuous functions preserve topological structure in one direction. Today, we look at functions that preserve it in **both directions**.
+
+This is **homeomorphism**, the mathematical foundation of "rubber-sheet geometry." It is a bijective mapping that allows us to twist, stretch, and bend a space without tearing it, proving that two seemingly different objects can be topologically identical.
+
+## Topological Equivalence
+
+We begin by considering an example:
+
+::: {.callout-note appearance="minimal"}
+$$X =\{a, b,c, d, e\}\,\,\,\,\,\,Y=\{g, h, i,j, k\}$$
+
+$$\tau_X= \{X,\emptyset, \{a\}, \{c, d\}, \{a, c, d\}, \{b, c, d, e\}\}$$
+
+$$\tau_Y=\{Y,\emptyset,\{g\},\{i,j\},\{g,i,j\},\{h,i,j,k\}\}$$
+:::
+
+It is clear that in an intuitive sense $(X, \tau_X)$ is "equivalent" to $(Y, \tau_Y)$. The function $f: X → Y$ defined by
+
+$$f(a) = g,\,f(b) = h,\,f(c) = i,\,f(d) = j \text{ and } f(e) = k$$
+
+provides the equivalence.
+
+## Topological Equivalence (cont.)
+
+\vspace{2mm}
+
+::: block
+### Definition 6.1
+
+Let $(X,\tau_X)$ and $(Y,\tau_Y)$be topological spaces. Then they are said to be homeomorphic if there exists a function $f:X → Y$ which has the following properties:
+
+\vspace{3mm}
+
+\(i\) $f$ is one-to-one (that is $f(x_1) = f(x_2)$ implies $x_1 = x_2$), \vspace{2mm}
+
+\(ii\) $f$ is onto (that is, for any $y\in Y$, $\exists x \in X$ such that $f(x) = y$), \vspace{2mm}
+
+\(iii\) for each $U \in \tau_Y,\,\,f^{-1} (U) \in \tau_X$, and \vspace{2mm}
+
+\(iv\) for each $V \in \tau_X, \,\,f(V) \in \tau_Y$. \vspace{3mm}
+
+Further, the map $f$ is said to be a homeomorphism between $(X,\tau_X)$ and $(Y,\tau_Y)$. We write $(X,\tau_X)\cong (Y, \tau_Y)$.
+:::
+
+In other words, $f$ be a bijection, and both $f$ and $f^{-1}$ are continuous.
+
+## Topological Equivalence (cont.)
+
+Saying that $f^{-1}$ is continuous when $f$ is a bijection is equivalent to saying that **the image of every open set under** $f$ **is an open set**.
+
+Similariy, saying that $f$ is continuous when $f^{-1}$ is a bijection is equivalent to saying that **the image of every open set under the inverse function,** $f^{-1}$**, is an open set.**
+
+::: {.callout-note appearance="minimal"}
+We can paraphrase the definition of homeomorphism by saying that $f$ is a homeomorphism if it is a bijection on points and a bijection on the collections of open sets. \vspace{3mm}
+
+- Every point in $X$ is matched to a unique point in $Y$, with no points in $Y$ left over.
+
+- Every open set in $X$ is matched to a unique open set in $Y$, with no open sets in $Y$ left over.
+:::
+
+## Topological Equivalence (cont.)
+
+::: {.callout-note appearance="minimal"}
+Let consider a function $f: \mathbb{R} \to \mathbb{R}$ defined by: $$f(x) = 3x + 1$$
+:::
+
+**Bijection:** It is a simple linear equation. Every $x$ gives a unique $y$ (one-to-one), and every real number $y$ can be reached (onto).
+
+**Continuity**: $f(x) = 3x + 1$ is a polynomial function. The inverse function is $f^{-1}(y) = \frac{y - 1}{3}$ is also a polynomial (a linear function), meaning both $f$ and $f^{-1}$ are continuous everywhere.
+
+Geometrically, this transformation is just Stretching (Scaling) - the coefficient $3$ stretches the space. Two points that were 1 unit apart are now 3 units apart. Then Shifting (Translation) - the $+1$ shifts the entire stretched line by 1 unit.
+
+Thus, the real line before and after this transformation is topologically equivalent.
+
+## Topological Invariants
+
+If two spaces are homeomorphic, they are topologically indistinguishable. They share the exact same topological properties. These shared properties are called **topological invariants**.
+
+Why are invariants useful? To prove two spaces are *not* homeomorphic, we do not need to test every possible function. We just need to find **one** topological invariant they do not share.
+
+::: {.callout-note appearance="minimal"}
+**Examples of Topological Invariants:**
+
+- **Connectedness** (Is it in one piece?)
+- **Compactness** (Is it closed and bounded?)
+- **Hausdorff property** (Can distinct points be separated by open sets?)
+- **Euler characteristic** (Number of "holes")
+:::
+
+Generally, properties that are defined in terms of open sets are topological properties.
+
+## Topological Invariants: Euler Characteristic
+
+One of the most famous topological invariants is the **Euler Characteristic** ($\chi$). Here, we count the Vertices ($V$), Edges ($E$), and Faces ($F$):
+
+::: {.callout-note appearance="minimal"}
+$$\chi = V - E + F$$
+:::
+
+For any convex polyhedron (like a cube or a pyramid), $\chi$ always equals 2. Therefore, all convex polyhedra are homeomorphic to each other.
+
+Since the cube and the sphere are homeomorphic, the topological invariant is preserved. Thus, a sphere also has $\chi = 2$, no matter how we draw grids on it. \vspace{2mm}
+
+::: block
+### Theorem 6.2
+
+Two surfaces are homeomorphic if and only if they share the same Euler characteristic.
+:::
+
+## Topological Invariants: Euler Characteristic
+
+Topologists noticed a pattern when they calculated $\chi$ for other shapes.
+
+The Euler Characteristic is entirely determined by the number of holes in the surface, formally known as the **Genus (**$g$).
+
+The formula connecting them is:
+
+::: {.callout-note appearance="minimal"}
+$$\chi = 2 - 2g$$
+:::
+
+- **Sphere** (0 holes): $g = 0 \implies \chi = 2 - 0 = \mathbf{2}$ \vspace{2mm}
+- **Torus / Donut** (1 hole): $g = 1 \implies \chi = 2 - 2 = \mathbf{0}$ \vspace{2mm}
+- **Double Torus** (2 holes): $g = 2 \implies \chi = 2 - 4 = \mathbf{-2}$ \vspace{2mm}
+
+## Example - Interval vs Real Line
+
+::: {.callout-note appearance="minimal"}
+Consider the infinite real line $\mathbb{R}$ and the finite open interval $(-1, 1)$. Both have the standard topology.
+
+We define a function $f: \mathbb{R} \to (-1, 1)$ as: $$f(x) = \frac{x}{1+|x|}$$
+:::
+
+**Bijection:** The function is strictly increasing. As $x \to \infty$, $f(x) \to 1$. As $x \to -\infty$, $f(x) \to -1$. It maps $\mathbb{R}$ exactly onto $(-1, 1)$ with no points left over.
+
+**Continuity:** It is apparent from its graph that the preimages of open intervals in $(-1, 1)$ are open intervals in $\mathbb{R}$. Both $f$ and $f^{-1}$ are continuous, preserving closeness in both directions.
+
+Thus, $\mathbb{R} \cong (-1, 1)$.
+
+## Example - Interval vs Real Line (cont.)
+
+Not only is $(-1, 1) \cong \mathbb{R}$, but **every nonempty open interval** is homeomorphic to $\mathbb{R}$. Intervals in standard topology fall into 3 distinct equivalence classes:
+
+::: {.callout-note appearance="minimal"}
+**1. Open intervals:** $(a, b) \cong (-\infty, a) \cong (a, \infty) \cong \mathbb{R}$
+
+**2. Closed, bounded intervals:** $[a, b] \cong [c, d]$
+
+**3. Half-open / Closed unbounded:** $[a, b) \cong (a, b] \cong (-\infty, a] \cong [a, \infty)$
+:::
+
+**Remark**: You may notice from here that length and boundedness is not preserved under homeomorphism. This implies that they are not topological properties.
+
+Also, this emphasizes why they call topology as a rubber sheet geometry, two shapes are the same as long as we do not tear them or glue them together.
+
+## Example - Circle vs Square
+
+::: {.callout-note appearance="minimal"}
+Let a square $S$ and a circle $C$ be centered at the origin $(0,0)$ in $\mathbb{R}^2$. We define a homeomorphism $f: S \to C$ using **radial projection**.
+
+For any point $p \in S$, we define: $$f(p) = \frac{p}{\|p\|}$$
+
+where $\|p\|$ is the distance from the origin to $p$.
+:::
+
+**Bijection:** A ray drawn from the origin intersects the perimeter of the square at exactly one point, and the perimeter of the circle at exactly one point.
+
+**Continuity**: The mapping of any open set in the square outputs an open set in the circle, and vice versa.
+
+Thus, $S\cong C$
+
+## Example - Circle vs Square (cont.)
+
+![](week7/image4.png){fig-align="center" width="100%"}
+
+## Example (cont.)
+
+![](week7/image5.png){fig-align="center" width="100%"}
+
+## Example (cont.)
+
+![](week7/image10.jpg){fig-align="center" width="74%"}
+
+## 
+
+\begin{center}
+\Huge Thank You
+\end{center}

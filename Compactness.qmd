@@ -1,0 +1,270 @@
+---
+title: "Topology"
+subtitle: "Compactness"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Compact Set
+
+  - Definition
+  - Example
+  - Open Cover
+
+- Compact Subsets of $\mathbb{R}$
+
+- The Heine-Borel Theorem
+
+## Introduction
+
+So far we have introduced two of the "Three Cs" of general topology: continuity and connectedness.
+
+In this chapter, we present the third: compact-ness.
+
+This concept is not as intuitive as continuity or connectedness. In fact, a formal definition for compactness in a general topological space took some time for topologists to establish.
+
+Compactness is the most important topological property. It plays a key role in many branches of mathematics.
+
+It would be fair to say that "until you understand compactness you do not understand topology!"
+
+So what is compactness? It could be described as the topologists generalization of finiteness.
+
+## Compactness - Definition
+
+::: block
+### Definition 8.1
+
+Let $A$ be a subset of a topological space $(X, \tau)$. Then $A$ is said to be compact if for every set $I$ and every family of open sets, $O_i$, $i \in I$, such that $A \subseteq \bigcup_{i\in I}\,O_i$, there exists a finite subfamily $O_{i_1},O_{i_2},\dots,O_{i_n}$ such that $A\subseteq O_{i_1}\cup O_{i_2}\cup \dots \cup O_{i_n}$.
+:::
+
+In other words, imagine we have an infinite collection of open sets, and if we combine all of them, their union form a superset that contains $A$.
+
+If $A$ is compact, we don't need that entire infinite collection. We can just pick out a finite number of those open sets, and their union will still be a superset of $A$.
+
+And for $A$ to be officially compact, this rule must hold true for any infinite family of open sets that contains $A$.
+
+## Compactness - Example
+
+::: {.callout-note appearance="minimal"}
+If $(X,\tau)=\mathbb{R}$ and $A=(0,\infty)$, then $A$ is **not** compact.
+:::
+
+\vspace{3mm}
+
+**Proof.** For each positive integer $i$, let $O_i$ be the open interval $(0,i)$. Then, clearly, $A \subseteq \bigcup^\infty_{i=1} O_i$. But there do **not** exist $i_1,i_2,\dots,i_n$ such that $A\subseteq (0,i_1)\cup(0,i_2)\cup\dots\cup(0,i_n)$. Therefore $A$ is not compact.
+
+\vspace{4mm}
+
+In other words, no matter how large we choose $n$, we cannot extract a finite subfamily whose union is a superset of $A$. This means $A\not\subseteq (0,i_1)\cup(0,i_2)\cup\dots\cup(0,i_n)$
+
+For this specific family of open sets, the only way to form a superset of $A$ is by using the infinite union itself, $A \subseteq \bigcup^\infty_{i=1} O_i$.
+
+## Compactness - Example
+
+::: {.callout-note appearance="minimal"}
+Let $(X, \tau)$ be any topological space and $A = \{x_1, x_2,\dots, x_n\}$ any finite subset of $(X, \tau)$. Then $A$ is compact.
+:::
+
+**Proof.** Let $O_i$, $i \in I$, be any family of open sets such that $A \subseteq \bigcup_{i\in I} O_i$. Then for each $x_j \in A$, there exists an $O_{i_j}$, such that $x_j \in O_{i_j}$. Thus $A \subseteq O_{i_1} \cup O_{i_2} \cup \dots \cup O_{i_n}$. So A is compact.
+
+\vspace{3mm}
+
+In other words, since $A$ is a finite set, we can simply choose one open set for each element in $A$. Then, the union of these carefully selected open sets is automatically a superset of $A$.
+
+::: block
+### Remark
+
+So we see from this example that every finite set (in a topological space) is compact. Indeed "compactness" can be thought of as a topological generalization of "finiteness".
+:::
+
+## Compactness - Example
+
+::: {.callout-note appearance="minimal"}
+A subset $A$ of a discrete space $(X,\tau)$ is compact $\Longleftrightarrow$ it is finite.
+:::
+
+**Proof.** If A is finite then previous example shows that it is compact. Conversely, let $A$ be compact. Then we have the family of singleton sets $O_x = \{x\}$, $x \in A$, such that each $O_x$ is open and $A \subseteq \bigcup_{x\in A}O_x$. As $A$ is compact, there exist $O_{x_1}, O_{x_2},\dots, O_{x_n}$ such that $A\subseteq O_{x_1}\cup O_{x_2}\cup\dots\cup O_{x_n}$ that is, $A \subseteq \{x_1,\dots,x_n\}$. Hence A is a finite set.
+
+\vspace{2mm}
+
+In other words, in a discrete space, every single point has its own open set. If we form an infinite family of open sets where each set contains exactly one point from $A$, their union is clearly a superset of $A$.
+
+By the definition of compactness, we must be able to extract a finite number from these sets whose union is still a superset of $A$. However, since each set holds exactly one point, a finite union can only hold a finite number of points. Thus, $A$ itself must be a finite set.
+
+## Compactness - Open cover
+
+::: block
+### Definition 8.2
+
+Let $I$ be a set and $O_i$, $i \in I$, a family of subset of $X$. Let $A$ be a subset of $X$. \vspace{3mm}
+
+\(i\) Then $O_i$, $i \in I$, is said to be a covering (or a cover) of $A$ if $A \subseteq \bigcup_{i\in I} O_i$. \vspace{2mm}
+
+\(ii\) If each $O_i$, $i \in I$, is an open set in $(X, \tau)$, then $O_i$, $i \in I$ is said to be an open covering of $A$ if $A \subseteq \bigcup_{i\in I} O_i$. \vspace{2mm}
+
+\(iii\) A finite subfamily, $O_{i_1}, O_{i_2},\dots, O_{i_n}$, of $O_i$, $i \in I$, is called a finite subcovering (of $A$) if $A\subseteq O_{i_1}\cup O_{i_2}\cup\dots\cup O_{i_n}$.
+:::
+
+## Compactness - Open cover
+
+So we can rephrase the definition of compactness as follows:
+
+::: block
+### Definition 8.1
+
+Let $A$ be a subset of a topological space $(X, \tau)$. Then $A$ is said to be compact if for every set $I$ and every family of open sets, $O_i$, $i \in I$, such that $A \subseteq \bigcup_{i\in I}\,O_i$, there exists a finite subfamily $O_{i_1},O_{i_2},\dots,O_{i_n}$ such that $A\subseteq O_{i_1}\cup O_{i_2}\cup \dots \cup O_{i_n}$.
+:::
+
+and using definition of open cover:
+
+::: block
+### Definition 8.3
+
+A subset $A$ of a topological space $(X, \tau)$ is said to be compact if every open covering of $A$ has a finite subcovering. If the compact subset $A$ equals $X$, then $(X, \tau)$ is said to be a compact space.
+:::
+
+## Compact Subset of $\mathbb{R}$
+
+\vspace{3mm}
+
+::: block
+### Proposition 8.4
+
+A compact subset of $\mathbb{R}$ is bounded
+:::
+
+**Proof.** Let $A\subseteq \mathbb{R}$ be unbounded. Then $A \subseteq \bigcup^\infty_{n=1}(-n,n)$, but $\{(-n,n)$ : $n=1,2,3,\dots\}$ does not have any finite subcovering of $A$ as $A$ is unbounded. Therefore $A$ is not compact. Hence all compact subsets of $\mathbb{R}$ are bounded.
+
+::: block
+### Proposition 8.5
+
+The closed interval $[0,1]$ is compact.
+:::
+
+If only finite sets were compact, the study of "compactness" would not be very interesting.
+
+This proposition reveals a powerful fact, even though all finite sets are compact, **not all compact sets are finite**. The interval $[0,1]$ contains an infinite number of points, yet it is compact.
+
+## The Heine-Borel Theorem
+
+\vspace{2mm}
+
+Before diving into the Heine-Borel Theorem itself, we need to establish a few foundational propositions to make the final proof much easier.
+
+First, it is clear that compactness is a **topological property**, since its definition relies entirely on open sets.
+
+However, like we saw last week in connectedness, we don't even need the full strength of a homeomorphism to preserve it.
+
+::: block
+### Proposition 8.6
+
+Let $f:X \rightarrow Y$ be a continuous function. If $A$ is a compact subset of $X$, then its image $f(A)$ is compact in $Y$.
+:::
+
+**In other words:** A continuous image of a compact set is always compact.
+
+This single proposition leads to several direct consequences.
+
+## The Heine-Borel Theorem
+
+::: block
+### Corollary 8.7
+
+Let $f:(X,\tau_X) \rightarrow (Y,\tau_Y)$ be a continuous surjective function. If $(X,\tau_X)$ is compact, then $(Y,\tau_Y)$ is compact.
+:::
+
+This corollary scales the previous idea up: a continuous image of an **entire** compact space is also compact.
+
+::: block
+### Corollary 8.8
+
+Let $(X,\tau_X)$ and $(Y,\tau_Y)$ be homeomorphic topological spaces. If $(X,\tau_X)$ is compact, then $(Y,\tau_Y)$ is compact.
+:::
+
+This confirms that homeomorphism completely preserves compactness across topological spaces.
+
+## The Heine-Borel Theorem
+
+::: block
+### Corollary 8.9
+
+For $a$ and $b$ in $\mathbb{R}$ with $a<b$, the closed interval $[a,b]$ is compact while the open interval $(a,b)$ is not compact.
+:::
+
+The space $[a,b]$ is homeomorphic to $[0,1]$. Since we already proved $[0,1]$ is compact, $[a,b]$ must also be compact (via Corollary 8.8).
+
+The space $(a,b)$ is homeomorphic to $(0,\infty)$. If $(a,b)$ were compact, $(0,\infty)$ would also be compact. But from our very first example, we know $(0,\infty)$ is **not** compact. Hence, $(a,b)$ is not compact.
+
+::: block
+### Proposition 8.10
+
+Every closed subset of a compact space is compact.
+:::
+
+So only closed subsets of a compact space are guaranteed to be compact, open subsets are not.
+
+## The Heine-Borel Theorem
+
+::: block
+### Theorem 8.11 (Heine-Borel Theorem)
+
+Every closed bounded subset of $\mathbb{R}$ is compact.
+:::
+
+If $A$ is bounded, then $A \subseteq [a, b]$ for some real numbers $a$ and $b$. We already know that $[a, b]$ is compact (from Corollary 8.9).
+
+Since $A$ is a closed subset existing inside a compact space $[a,b]$, $A$ itself must be compact (from Proposition 8.10).
+
+::: block
+### Proposition 8.12 (converse of Heine-Borel Theorem)
+
+Every compact subset of $\mathbb{R}$ is closed and bounded
+:::
+
+This is a direct consequence of Proposition 8.4 (which guarantees it is bounded) and the fundamental properties of the real number line (which guarantee it is closed).
+
+## The Heine-Borel Theorem
+
+\vspace{2mm}
+
+Combining Theorem 8.11 and Proposition 8.12, we can conclude that:
+
+::: block
+### Corollary 8.13
+
+A subset of $\mathbb{R}$ is compact if and only if it is closed and bounded.
+:::
+
+Finally, we can generalize this theorem to higher dimensions.
+
+::: block
+### Theorem 8.14 (Generalized Heine-Borel Theorem)
+
+A subset of $\mathbb{R}^n$, $n≥1$, is compact if and only if it is closed and bounded.
+:::
+
+![](week9/image2.png){fig-align="center" width="77%"}
+
+## 
+
+\begin{center}
+\Huge{Thank You}
+\end{center}

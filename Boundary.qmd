@@ -1,0 +1,273 @@
+---
+title: "Topology"
+subtitle: "Boundary"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Closed Set
+
+- Boundary
+
+- Relation
+
+  - Boundary
+
+  - Interior
+
+  - Closure
+
+## Recap - Open Set
+
+We have defined what is an open set which is a member of $\tau$,
+
+::: block
+### Definition 2.2
+
+Let $(X,\tau)$ be any topological space. Then the members of $\tau$ are said to be **open sets**.
+:::
+
+::: block
+### Proposition 2.3
+
+If $(X,\tau)$ be any topological space, then:
+
+\
+(i) $X$ and $\emptyset$ are open sets,
+
+\(ii\) The union of any collection of sets in $\tau$ is an open set, and
+
+\(iii\) The intersection of any finite collection of sets in $\tau$ is an open set.
+:::
+
+But back then in high school, we have open interval and closed interval as well, so how about set?
+
+## Closed Set
+
+::: block
+### Definition 4.1
+
+Let $(X,\tau)$ be a topological space. A subset $S$ of $X$ is said to be a **closed set** in $(X,\tau)$ if its **complement** in $X$, namely $X\setminus S$, **is open** in $(X,\tau)$.
+:::
+
+::: block
+### Proposition 4.2
+
+If $(X,\tau)$ is any topological space, then
+
+\(i\) $\emptyset$ and $X$ are closed set,
+
+\(ii\) the intersection of any (finite or infinite) number of closed sets is a closed set, and
+
+\(iii\) the union of any finite number of closed sets is a closed set.
+:::
+
+## Closed Set (cont.)
+
+\vspace{2mm}
+
+Remember that a set, $S$, is closed if $X\setminus S$ is open.
+
+- You can see that $\emptyset = X\setminus X$ is an open set, so $X$ is closed.
+
+- and $X=X\setminus \emptyset$ is an open set, so $\emptyset$ is closed.
+
+- let say $C$ is a closed set, so $(X\setminus C)$ is an open set. Then take the union of this open set, $\bigcup (X\setminus C) = X\setminus \bigcap C$ is an open set (from the definition of open set), so $\bigcap C$ is closed.
+
+- and you can use the same method to prove the third point of proposition 4.2
+
+::: {.callout-note appearance="minimal"}
+Notice that $X$ is an open set but also a closed set at the same time, so do $\emptyset$. In this such case, we call the set a **clopen** set.
+
+- In every topological space, $(X,\tau)$, both $X$ and $\emptyset$ are clopen.
+
+- In a discrete space, all subsets of $X$ are clopen.
+
+- In an indiscrete space, the only clopen subsets are $X$ and $\emptyset$.
+:::
+
+## Closed Set - Standard Topology
+
+::: {.callout-note appearance="minimal"}
+Any closed interval in standard topology on $\mathbb{R}$ is a closed set.
+:::
+
+Take a closed interval, $[a,b]$, then the complement of it is $\mathbb{R} \setminus [a,b] =(-∞,a) \cup(b,∞)$, which is an open set.
+
+::: {.callout-note appearance="minimal"}
+Each singleton set, $\{a\}$, in standard topology on $\mathbb{R}$ is a closed set.
+:::
+
+Take any singleton set, $\{a\}$, then the complement of it is $\mathbb{R} \setminus \{a\} =(-∞,a) \cup(a,∞)$, which is an open set.
+
+::: {.callout-note appearance="minimal"}
+A half-open interval, such as $[a,b)$, is neither open nor closed in standard topology on $\mathbb{R}$.
+:::
+
+Take a half-open interval, $[a,b)$, then the complement of it is $\mathbb{R} \setminus [a,b) =(-∞,a) \cup[b,∞)$, which is a union of an open set and another half-open interval, so its not an open set.
+
+## Recap - Interior and Closure
+
+\vspace{2mm}
+
+::: block
+### Definition 4.3
+
+Let $A$ be a subset of a topological space $(X,\tau)$. The closure of $A$ is the **intersection** of all closed sets containing $A$:
+
+$$Cl(A) = \overline{A} = \bigcap \{F \mid F \text{ is a closed set and } A \subseteq F\}$$
+:::
+
+::: block
+### Definition 3.4
+
+Let $A$ be a subset of a topological space $(X,\tau)$. The **interior** of $A$, denoted by $Int(A)$ or $\mathring{A}$, is the union of all open sets contained in $A$:
+
+$$Int(A) = \mathring{A} = \bigcup \{U \in \tau \mid U \subseteq A\}$$
+:::
+
+::: {.callout-note appearance="minimal"}
+Consider $A=[0,1)$ as a subset of $\mathbb{R}$ with the standard topology. Then $Cl(A)=[0,1]$ and $Int(A)=(0,1)$.
+:::
+
+## Boundary
+
+\vspace{2mm}
+
+::: block
+### Definition 4.4
+
+Let $A$ be a subset of a topological space $(X,\tau)$. The **boundary** of $A$, denoted $\partial A$, is the set:
+
+$$\partial A=Cl(A)-Int(A)=Cl(A)\setminus Int(A)$$
+:::
+
+::: {.callout-note appearance="minimal"}
+Consider $A=[0,1)$ as a subset of $\mathbb{R}$ with the standard topology. Then $Cl(A)=[0,1]$ and $Int(A)=(0,1)$.
+
+$\partial A=[0,1]-(0,1)=[0,1]\setminus(0,1)=\{0,1\}$
+:::
+
+## Boundary (cont.)
+
+\vspace{2mm}
+
+This theorem gives conditions that help us to determine whether or not a point $x$ lies in the boundary of a set $A$.
+
+::: block
+### Theorem 4.5
+
+Let $A$ be a subset of a topological space $(X,\tau)$ and let $x$ be a point in $X$. Then $x\in \partial A$ if and only if every neighborhood of $x$ intersects both $A$ and $X\setminus A$, or
+
+$$x \in \partial A \iff  \forall U \in \tau \text{ with } x \in U, \; (U \cap A \neq \emptyset) \land (U \setminus A \neq \emptyset) $$
+:::
+
+noted that $U\cap(X\setminus A)$ can be simplify to $U\setminus A$ as illustrated below,
+
+![](week5/image1.png){fig-align="center" width="65%"}
+
+## Boundary (cont.)
+
+![](week5/image2.png){fig-align="center" width="100%"}
+
+## Relation
+
+::: block
+### Theorem 4.6
+
+Let $A$ be a subset of a topological space $(X,\tau)$,
+
+\(i\) $\partial A =\partial A^c$.
+
+\(ii\) $Cl(A)=A\cup \partial A$ and $Cl(A^c)=A^c \cup \partial A$.
+
+\(iii\) $Cl(A)\cap Cl(A^c)=\partial A$.
+
+\(iv\) $Cl(A^c)^c=A\setminus \partial A=Int(A)$.
+:::
+
+![](week5/image4.png){fig-align="center" width="72%"}
+
+## Relation (cont.)
+
+Let $(X,\tau)$ be a topological space and $A$ and $B$ be subsets of $X$.
+
+::: {.callout-note appearance="minimal"}
+\(i\) If $U$ is an open set in $X$ and $U\subset A$, then $U\subset Int(A)$.
+:::
+
+Since we define Interior as a union of all open set, so $U$ must be one of them.
+
+::: {.callout-note appearance="minimal"}
+\(ii\) If $C$ is a closed set in $X$ and $A\subset C$, then $Cl(A) \subset C$.
+:::
+
+Since we define closure as intersection of all closed set, so the closure itself must be a subset of any $C$.
+
+![](week5/image3.png){fig-align="center" width="51%"}
+
+## Relation (cont.)
+
+::: {.callout-note appearance="minimal"}
+\(iii\) If $A\subseteq B$ then $Int(A) \subseteq Int(B)$. \vspace{2mm}
+
+\(iv\) If $A\subseteq B$ then $Cl(A) \subseteq Cl(B)$.
+:::
+
+::: {.callout-note appearance="minimal"}
+\(v\) $A$ is open if and only if $A=Int(A)$.
+:::
+
+For example, let $A=(a,b)$, then $Int(A)=(a,b)$. So we can see that now $A=Int(A)$. we know that an open interval is an open set.
+
+::: {.callout-note appearance="minimal"}
+\(vi\) $A$ is closed if and only if $A=Cl(A)$. Noted that $\partial A \subseteq A$.
+:::
+
+For example, let $A=[a,b]$, then $Cl(A)=[a,b]$. So we can see that now $A=Cl(A)$. we know that a closed interval is a closed set.
+
+::: {.callout-note appearance="minimal"}
+\(vii\) $Cl(A)=Int(A)∪∂A$.
+:::
+
+## Relation (cont.)
+
+![](week5/image4.png){fig-align="center" width="54%"}
+
+::: {.callout-note appearance="minimal"}
+\(viii\) $Int(A^c)=Cl(A)^c$.
+:::
+
+::: {.callout-note appearance="minimal"}
+\(ix\) $Cl(A^c)=Int(A)^c$.
+:::
+
+::: {.callout-note appearance="minimal"}
+\(x\) $Int(A)\cup Int(B) \subset Int(A \cup B)$.
+:::
+
+::: {.callout-note appearance="minimal"}
+\(xi\) $Int(A) \cap Int(B) = Int(A \cap B)$.
+:::
+
+::: {.callout-note appearance="minimal"}
+\(xii\) $Int(A) \subseteq A \subseteq Cl(A)$ and $\partial A \subseteq Cl(A)$
+:::

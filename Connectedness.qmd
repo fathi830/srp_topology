@@ -1,0 +1,303 @@
+---
+title: "Topology"
+subtitle: "Connectedness"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Connected and Disconneted Spaces
+
+  - Definition
+
+  - Examples
+
+- Properties of Connected Spaces
+
+- Path Connectedness
+
+## Introduction
+
+There are several natural approaches that we could take to rigorously capture the concept of connectedness for a topological space.
+
+- One approach might be to say that a topological space is connected if it cannot be broken down into two distinct pieces that are separated from each other.
+
+- Another approach might be to say that a topological space is connected if we can take a continuous walk in the space from any point to any other point.
+
+We will define both of these types of connectedness. Spaces of the first type are called connected, while spaces of the second type are called path connected.
+
+We will show that these two types of connectedness are not the same, but that path connectedness does imply connectedness.
+
+## Definition of Connectedness
+
+::: block
+### Definition 7.1
+
+Let $X$ be a topological space. \vspace{3mm}
+
+\(i\) We call $X$ connected if there does **not** exist a pair of disjoint nonempty open sets whose union is $X$. \vspace{2mm}
+
+\(ii\) We call $X$ disconnected if $X$ is not connected \vspace{2mm}
+
+\(iii\) If $X$ is disconnected, then a pair of disjoint nonempty open sets whose union is $X$ is called a separation of $X$.\vspace{2mm}
+:::
+
+In other words, we define connectedness in a negative way, means if we can not find any separation in $X$, then we say $X$ is a connected space.
+
+In next slide, we can be more clear what is a separation on a space.
+
+## Separation
+
+::: {.callout-note appearance="minimal"}
+Let $(X, \tau)$ be a topological space, the pair $U$ and $V$ is separation of $X$ if: \vspace{3mm}
+
+\(i\) $U,\,V\in \tau$ (open set), \vspace{2mm}
+
+\(ii\) $U≠ \emptyset$ and $V≠ \emptyset$ (non-empty), \vspace{2mm}
+
+\(iii\) $U\cap V = \emptyset$ (disjoint), and \vspace{2mm}
+
+\(iv\) $U\cup V = X$ (their union equals to $X$). \vspace{2mm}
+:::
+
+## Connected Spaces - Example
+
+::: {.callout-note appearance="minimal"}
+Consider the two topologies on the three-point set $X= \{a, b, c\}$ and $\tau_1$ and $\tau_2$ be topologies on $X$.
+
+$$\tau_1=\{X,\emptyset,\{a,b\},\{b,c\},\{b\}\}$$
+
+$$\tau_2=\{X,\emptyset,\{a,b\},\{b,c\},\{b\},\{c\}\}$$
+:::
+
+In the first topology, $X$ is connected since there is no pair of disjoint nonempty open sets whose union equals X.
+
+However, in the second topology, $X$ is disconnected. The pair of open sets, $U = \{a, b\}$ and $V = \{c\}$, is a separation of $X$.
+
+To be clear, this pair $U$ and $V$ are non-empty and disjoint open set which their union equals to $X$.
+
+## Disconnected Spaces - Example
+
+::: {.callout-note appearance="minimal"}
+Consider a topological space $(X,\tau)$ with **discrete topology**. If a set $X$ consists of more than one point, then it is **disconnected**.
+:::
+
+If $A$ is any nonempty proper subset of $X$, then the pair of sets, $A$ and $X \setminus A=A^c$, is a separation of $X$.
+
+By the definition of discrete topology, any subset of $X$ is open. So if we take any $A\subset X$;
+
+- $A,A^c\in \tau$
+
+- $A≠ \emptyset$ and $A^c≠ \emptyset$
+
+- $A\cap A^c = \emptyset$
+
+- $A\cup A^c = X$
+
+Since we can find the separation on $X$ in discrete topology, the space $X$ is not connected.
+
+## Connected Spaces - Example
+
+::: {.callout-note appearance="minimal"}
+Consider a topological space $(X,\tau)$ with **indiscrete topology**, then the space is a **connected** topological space.
+:::
+
+\vspace{3mm}
+
+Just like discrete space in previous example, we need to find a nonempty proper subsets of $X$ that are open in order to find separation on $X$.
+
+In this case, there is no separation of $X$ since there are no nonempty proper subsets of $X$ that are open.
+
+This is because by the definition of indiscrete space, the only open set is $X$ (not a proper subset) and $\emptyset$ (empty).
+
+## Connected Spaces - Example
+
+\vspace{3mm}
+
+::: {.callout-note appearance="minimal"}
+If $p\in \mathbb{R}$, then $\mathbb{R} \setminus \{p\}$ is a **disconnected** topological space
+:::
+
+\vspace{1mm}
+
+since the pair of sets, $U= (-∞, p)$ and $V = (p, ∞)$, is a separation of $\mathbb{R} \setminus \{p\}$.\vspace{2mm}
+
+- $(-∞, p),(p, ∞)\in \tau$ \vspace{2mm}
+
+- $(-∞, p)≠ \emptyset$ and $(p, ∞)≠ \emptyset$ \vspace{2mm}
+
+- $(-∞, p)\cap (p, ∞)= \emptyset$ \vspace{2mm}
+
+- $(-∞, p)\cup (p, ∞) = \mathbb{R} \setminus \{p\}$ \vspace{2mm}
+
+![](week8/image1.png){fig-align="center" width="75%"}
+
+## Properties of Connected Spaces
+
+Suppose $U$ and $V$ is a separation of $X$, then,
+
+- $U^c=X\setminus U=V\in\tau$ and
+- $V^c=X\setminus V=U \in\tau$
+
+Notice that $U$ is open by the definition of separation, and $U$ is also closed since its complement, $V$ is open.
+
+Also the same thing happens for $V$. So both $U$ and $V$ are clopen sets.
+
+::: block
+### Theorem 7.2
+
+A topological space $(X, \tau)$ is connected if and only if there are **no** nonempty proper subsets of $X$ that are both open and closed in $X$.
+:::
+
+Thus, Theorem 7.2 indicates that $X$ is connected if and only if $X$ and $\emptyset$ are the only sets that are both open and closed in $X$.
+
+## Properties of Connected Spaces (cont.)
+
+It is apparent that connectedness is a topological property since it is defined only in terms of open sets.
+
+It is straightforward to show that if $X$ and $Y$ are homeomorphic, then $X$ is connected if and only if $Y$ is connected.
+
+However, as the following theorem indicates, we do not need the full strength of a homeomorphism to preserve connectedness:
+
+::: block
+### Theorem 7.3
+
+If $X$ is connected and $f: X → Y$ is continuous, then $f(X)$ is connected in $Y$.
+:::
+
+\vspace{2mm}
+
+A continuous function transforms a space while preserving the closeness. If the original space $X$ is in one piece, mapping it continuously guarantees the image $f(X)$ remains in one piece.
+
+## Properties of Connected Spaces (cont.)
+
+\vspace{2mm}
+
+::: block
+### Theorem 7.4
+
+The real line $\mathbb{R}$ in the standard topology is a connected topological space.
+:::
+
+::: block
+### Theorem 7.5
+
+Let $C$ be connected in $X$, and assume that $C \subset A \subset Cl(C)$. Then $A$ is connected in $X$.
+:::
+
+**Why are all intervals in** $\mathbb{R}$ connected? \vspace{2mm}
+
+1.  Any open interval $(a,b)$ is homeomorphic to $\mathbb{R}$. Thus, $(a,b)$ is connected.
+
+2.  The closure of $(a,b)$ is the closed interval $[a,b]$.
+
+3.  By Theorem 7.5, if we set $C = (a,b)$, then any set $A$ between $(a,b)$ and $[a,b]$ is also connected.
+
+4.  Therefore, $(a,b)$, $[a,b)$, $(a,b]$, and $[a,b]$ are all connected spaces.
+
+## Properties of Connected Spaces - Cutpoint
+
+::: block
+### Definition 7.6
+
+Let $X$ be a connected topological space. A point $p \in X$ is called a **cutpoint** of $X$ if the subspace $X \setminus \{p\}$ is disconnected.
+:::
+
+In the real line $\mathbb{R}$, every single point $p$ is a cutpoint. If we remove $p$, the line splits into two disjoint open intervals $(-\infty, p)$ and $(p, \infty)$, which is a separation.
+
+So we can use them to distinguish spaces: \vspace{1mm}
+
+- **Real Line (**$\mathbb{R}$): Every point is a cutpoint. \vspace{1mm}
+- **Circle (**$S^1$): Has no cutpoints. Removing one point leaves an open arc (like a piece of string), which is still connected. Thus, $\mathbb{R} \not\cong S^1$. \vspace{1mm}
+- **Plane (**$\mathbb{R}^2$): Has no cutpoints. Removing a point leaves a "punctured plane", which is still connected since we can draw a curve around the hole. Thus, $\mathbb{R} \not\cong \mathbb{R}^2$.
+
+## Path Connectedness
+
+We now introduce a more constructive approach to connectedness.
+
+::: block
+### Definition 7.7
+
+Let $X$ be a topological space. A **path** in $X$ from $x$ to $y$ is a continuous function $f: [0,1] \rightarrow X$ such that $f(0) = x$ and $f(1) = y$.
+:::
+
+::: {.callout-note appearance="minimal"}
+A topological space $X$ is **path connected** if every pair of points $x, y \in X$ can be joined by a path in $X$.
+:::
+
+The function must be **continuous**, ensuring that the resulting line/curve in $X$ has no breaks, gaps, or sudden jumps. 
+
+A space is path connected if you can draw a curve connecting any two points without lifting your pen.
+
+Then, is there a difference between "cannot be separated" (connected) and "can be joined by a path" (path connected)?
+
+## Path Connectedness (cont.)
+
+\vspace{2mm}
+
+::: block
+### Theorem 7.8
+
+If a topological space $X$ is path connected, then it is connected.
+:::
+
+Because the path $f([0,1])$ acts as a continuous "bridge" binding $x$ and $y$ together, making it impossible to separate the space. \vspace{2mm}
+
+Does connected imply path connected? \vspace{1mm}
+
+No, Path connectedness is a strictly **stronger condition**. There is no "simple" example for this since in everyday geometry, both concepts are identical. The standard counterexample is the **Topologist's Sine Curve**.
+
+::: {.callout-note appearance="minimal"}
+Let $T$ be a subspace of $\mathbb{R}^2$ defined as: $$ T = \left\{ \left(x, \sin\left(\frac{1}{x}\right)\right) \ \Big| \ 0 < x \leq 1 \right\} \cup \{ (0, y) \mid -1 \leq y \leq 1 \} $$
+:::
+
+## Path Connectedness (cont)
+
+![](week8/image2.png){fig-align="center" width="46%"}
+
+- **Connected**: As the curve approaches the y-axis, it oscillates infinitely between -1 and 1. Thus, the entire vertical line segment on the y-axis is the set of limit points of the wave. A connected space joined with its limit points remains connected (Theorem 7.5).
+
+- **NOT Path Connected**: A path requires a continuous function connecting the two parts. However, because the limit of $\sin(1/x)$ as $x \to 0$ is **undefined**, the curve cannot be continuously extended to touch the y-axis.
+
+## Summary
+
+\vspace{5mm}
+
+1.  **Connectedness**
+
+    ensures a space cannot be split into two disjoint open sets.
+
+2.  Continuous functions preserve connectedness.
+
+3.  **Cutpoints**
+
+    help us distinguish between non-homeomorphic spaces (e.g., lines vs circles).
+
+4.  **Path Connectedness**
+
+    requires a continuous path (drawing without lifting the pen) between any two points.
+
+5.  Path Connected $\implies$ Connected, but Connected $\nRightarrow$ Path Connected.
+
+## 
+
+\begin{center}
+\Huge{Thank You}
+\end{center}

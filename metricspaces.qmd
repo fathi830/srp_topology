@@ -1,0 +1,421 @@
+---
+title: "Topology"
+subtitle: "Metric Spaces"
+engine: knitr
+format: 
+  beamer:
+    theme: Madrid      
+    colortheme: dolphin
+    navigation: empty
+    header-includes:
+      - \setbeamertemplate{footline}{}
+      - |
+        \setbeamertemplate{footline}{
+          \hfill
+          \usebeamerfont{page number in head/foot}
+          \usebeamercolor[fg]{page number in head/foot}
+          \insertframenumber\,/\,\inserttotalframenumber
+          \kern1em\vskip2ex
+        }
+      - \setbeamercolor{page number in head/foot}{fg=gray}
+editor: visual
+---
+
+## Overview
+
+- Definition of metric
+
+- Example of metrics
+
+  - Normed vector space
+
+  - The $L_p$ space
+
+- Open balls
+
+- Geometry induced by distance
+
+## Definition of Metric
+
+A Metric Space is a mathematical pair denoted as $(X, d)$,
+
+where $X$ represents any non-empty set , and $d$ is a real-valued function that acts as the distance-measuring function with the mapping $d: X × X → R$.
+
+::: block
+### Definition 1.1
+
+Let $X$ be a non-empty set and $d$ a real-valued function defined on $X \times X$ such that for $a,b \in X$:
+
+\vspace{2mm}
+
+\(i\) $d(x,y)≥0$ \vspace{1mm}
+
+\(ii\) $d(x,y)=0$ if and only if $x=y$ \vspace{1mm}
+
+\(iii\) $d(x,y)=d(y,x)$ \vspace{1mm}
+
+\(iv\) $d(x,z)≤d(x,y)+d(y,z)$,\[the triangle inequality\] $\forall x,y,z \in X$
+
+\vspace{2mm}
+
+Then $d$ is said to be a **metric** on $X$, $(X,d)$ is called a **metric space** and $d(x,y)$ is referred to as the **distance** between $x$ and $y$.
+:::
+
+## Example of Metrics - Normed Vector Space
+
+A **normed vector space** $(V,||\,||)$ is a vector space $V$ with a norm \|\| \|\|.
+
+::: block
+### Definition 1.2
+
+Let $V$ be a vector space. A **norm, \|\| \|\|,** on $V$ is a map $: V \rightarrow \mathbb{R}$ such that for all $x,y \in V$ and $\lambda$ in the field:
+
+\vspace{2mm}
+
+\(i\) $|| x || ≥ 0$ \vspace{1mm}
+
+\(ii\) $||x||=0$ if and only if $x=0$ \vspace{1mm}
+
+\(iii\) $||x+y||≤||x||+||y||$ \vspace{1mm}
+
+\(iv\) $||\lambda x|| = |\lambda|\, ||x||$
+:::
+
+## Normed Vector Space (cont.)
+
+Let ($V$, \|\| \|\|) be any normed vector space. Then there is a corresponding metric, $d$, on the set $V$ given by:
+
+$$d(x,y)=||x-y||$$
+
+for $x,y \in V$.
+
+By definition of norm itself, its already proven that d is indeed a metric, so **every normed vector space is also a metric space** (but the inverse not always true).
+
+::: {.callout-tip appearance="minimal"}
+When we set $y=0$:
+
+$$d(x,0)=||x-0||=||x||$$
+
+So we can conclude that $||x||$ is a special case of metric when we fix another point to origin.
+:::
+
+## Example of Metrics - The $L_p$ Space
+
+::: {.callout-note appearance="minimal"}
+For a vector in an $n$-dimensional space, the $L_p$ norm family is defined by the general equation:
+
+$$||x||_p = ( ∑ |x_i|^p )^{1/p}$$
+:::
+
+- **Euclidean Metric,** $L_2$ : This measures the standard straight-line distance \vspace{0.5mm}
+
+  $d(x,y)=\sqrt{|x-y|^2}=|x-y|$ for $\mathbb{R}^1$ \vspace{0.5mm}
+
+  $d((x_1,y_1),(x_2,y_2))= \sqrt{|x_1 - x_2|^2 + |y_1 - y_2|^2}$ for $\mathbb{R}^2$ \vspace{2mm}
+
+- **Manhattan Metric**, $L_1$ : This restricts movement to a grid-like layout (no cross) \vspace{0.5mm}
+
+  $d((x_1,y_1),(x_2,y_2))=|x_1-x_2|+|y_1-y_2|$ \vspace{2mm}
+
+- **Chebyshev Metric**, $L_∞$ : The formula transforms into a maximum function \vspace{0.5mm} $d((x_1,y_1),(x_2,y_2))=max\{|x_1-x_2|,|y_1-y_2|\}$
+
+## Example of Metrics (cont.)
+
+::::: columns
+::: column
+$\mathbb{R}^1$ **Euclidean**
+
+**1D Line:** Straight line distance
+
+```{python}
+#| echo: false
+#| results: hide
+#| fig-height: 1.5
+#| fig-align: center
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(2,2)) 
+ax.plot([-1.5, 4.5], [0, 0], color='gray', linewidth=2)
+ax.plot([0, 3], [0, 0], color='#FF5733', linewidth=6)
+ax.scatter([0, 3], [0, 0], color='black', s=60, zorder=5)
+
+ax.text(0, 0.3, '$x$', fontsize=12, ha='center')
+ax.text(3, 0.3, '$y$', fontsize=12, ha='center')
+ax.text(1.5, -0.5, '$|x-y|$', fontsize=10, ha='center')
+
+ax.set_ylim([-1, 1])
+ax.set_xlim([-2, 5])
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: column
+$\mathbb{R}^2$ **Euclidean**
+
+**2D Plane:** Shortest distance(Pythagoras)
+
+```{python}
+#| echo: false
+#| results: hide
+#| fig-height: 1.5
+#| fig-align: center
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(2,2))
+ax.plot([0, 3], [0, 4], color='#FF5733', linewidth=4)
+ax.scatter([0, 3], [0, 4], color='black', s=50, zorder=5)
+
+ax.text(-1.8, -1.1, '$(x_1, y_1)$', fontsize=12)
+ax.text(3.3, 4.3, '$(x_2, y_2)$', fontsize=12)
+
+for i in range(-1, 6): ax.axhline(i, color='gray', linestyle=':', alpha=0.3)
+for i in range(-1, 5): ax.axvline(i, color='gray', linestyle=':', alpha=0.3)
+
+ax.set_xlim([-2, 5])
+ax.set_ylim([-2, 6])
+ax.set_aspect('equal')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+:::
+:::::
+
+## Example of Metrics (cont.)
+
+::::: columns
+::: column
+$\mathbb{R}^2$ **Manhattan**
+
+**Grid:** Strictly vertical or horizontal
+
+```{python}
+#| echo: false
+#| results: hide
+#| fig-height: 1.5
+#| fig-align: center
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(2,2))
+ax.plot([0, 3], [0, 0], color='#FF5733', linewidth=4)
+ax.plot([3, 3], [0, 4], color='#FF5733', linewidth=4)
+ax.scatter([0, 3], [0, 4], color='black', s=50, zorder=5)
+
+ax.text(-1.8, -1.1, '$(x_1, y_1)$', fontsize=12)
+ax.text(3.3, 4.3, '$(x_2, y_2)$', fontsize=12)
+
+for i in range(-1, 6): ax.axhline(i, color='gray', linestyle=':', alpha=0.3)
+for i in range(-1, 5): ax.axvline(i, color='gray', linestyle=':', alpha=0.3)
+
+ax.set_xlim([-2, 5])
+ax.set_ylim([-2, 6])
+ax.set_aspect('equal')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: column
+**Discrete Metric**
+
+the distance between one point with another will always one, unless the point is itself
+
+```{python}
+#| echo: false
+#| results: hide
+#| fig-height: 1.5
+#| fig-align: center
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(2,2))
+
+pts = [[0, 1], [1.5, 1], [0.75, 2.3]]
+labels = ['$x$', '$y$', '$z$']
+
+for i in range(3):
+    for j in range(i+1, 3):
+        ax.plot([pts[i][0], pts[j][0]], [pts[i][1], pts[j][1]], 
+                color='blue', linestyle='--', alpha=0.6, linewidth=2)
+        
+        mid_x = (pts[i][0] + pts[j][0])/2
+        mid_y = (pts[i][1] + pts[j][1])/2
+        
+        if i == 0 and j == 1:    
+            mx, my = mid_x, mid_y - 0.15
+        elif i == 0 and j == 2:  
+            mx, my = mid_x - 0.15, mid_y
+        else:                    
+            mx, my = mid_x + 0.15, mid_y
+            
+        ax.text(mx, my, '1', color='blue', fontsize=12, ha='center', va='center')
+
+for i, pt in enumerate(pts):
+    ax.scatter(pt[0], pt[1], color='black', s=100, zorder=5)
+    ax.text(pt[0], pt[1]+0.15, labels[i], fontsize=16, ha='center')
+
+ax.set_xlim([-0.2, 1.7])
+ax.set_ylim([0.4, 2.6])
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+:::
+:::::
+
+## Example of Metrics (cont.)
+
+- **Discrete Metric :** The discrete metric is defined purely logically, without relying on the continuous measurement of real number.
+
+  $$d(x,y) = \begin{cases} 
+  0, & \text{if } x = y \\ 
+  1, & \text{if } x \neq y 
+  \end{cases}$$
+
+Many important examples of metric spaces are "function spaces". For these, the set $X$ on which we put a metric is a set of functions.
+
+- Let $C[0,1]$ denote the set of continuous functions in range \[0,1\] into $\mathbb{R}$. A metric is defined on this set (with $f,g \in C[0,1]$) by:
+
+  $$d(f,g)=\int_0^1 |f(x)-g(x)|\,\,dx$$
+
+## Example of Metrics (cont.)
+
+A moment's thought should tell you that $d(f,g)$ is precisely the area of the region which lies between the graphs of the functions and the lines $x = 0$ and $x = 1$, as illustrated below.
+
+![](metricspaces_files/pic1.png){fig-align="center" width="60%"}
+
+## Open Balls
+
+::: block
+### Definition 2.3
+
+Let $(X,d)$ be a metric space and $r$ any positive real number. Then the open ball about $x \in X$ of radius $r$ is the set:
+
+$$B(x,r)=\{y:y \in X\,\,\text{and}\,\, d(x,y)<r\}$$
+:::
+
+- **The Boundary:** The outer edge is strictly excluded.
+
+- **The Buffer Zone:** Every interior point is kept completely safe from the outside world.
+
+## Open Balls (cont.)
+
+::::: columns
+::: column
+In $\mathbb{R}^1$ with the Euclidean metric given by
+
+$$d(x,y)=|x-y|$$
+
+, $B(x,r)$ is the open interval $(x-r,x+r)$.
+
+```{python}
+#| echo: false
+#| results: hide
+#| fig-height: 2.5
+#| fig-align: center
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(6, 2.5))
+
+# 1. Melukis garis nombor di bawah (y = 0) dengan anak panah kiri & kanan
+ax.annotate('', xy=(3, 0), xytext=(-3, 0),
+            arrowprops=dict(arrowstyle="<|-|>", color='black', lw=1.5))
+
+# 2. Melukis garis Open Ball di atas (y = 0.5)
+ax.plot([-1.5, 1.5], [0.5, 0.5], color='#3357FF', linewidth=5)
+
+# 3. Bulatan kosong (Hollow circles) di kedua-dua hujung
+ax.scatter([-1.5, 1.5], [0.5, 0.5], s=150, facecolors='white', edgecolors='#3357FF', linewidth=2.5, zorder=5)
+
+# Titik tengah x (bulat penuh)
+ax.scatter([0], [0.5], color='#3357FF', s=80, zorder=5)
+
+# 4. Label Teks
+ax.text(0, 0.75, '$x$', fontsize=16, ha='center')
+ax.text(-1.5, 0.75, '$x-r$', fontsize=16, ha='center')
+ax.text(1.5, 0.75, '$x+r$', fontsize=16, ha='center')
+
+# Garis putus-putus ke garis nombor (sebagai panduan mata)
+ax.plot([-1.5, -1.5], [0, 0.4], color='gray', linestyle=':', alpha=0.5)
+ax.plot([1.5, 1.5], [0, 0.4], color='gray', linestyle=':', alpha=0.5)
+ax.plot([0, 0], [0, 0.4], color='gray', linestyle=':', alpha=0.5)
+
+ax.set_xlim([-3.2, 3.2])
+ax.set_ylim([-0.5, 1.5])
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: column
+In $\mathbb{R}^2$ with the Euclidean metric given by \vspace{2mm}
+
+$d((x_1,y_1),(x_2,y_2))$ \vspace{1mm}
+
+$= \sqrt{|x_1 - x_2|^2 + |y_1 - y_2|^2}$ \vspace{2mm}
+
+, $B(x,r)$ is the open disc with centre $x$ and radius $r$
+
+![](metricspaces_files/pic4.png){fig-align="center" width="80%"}
+:::
+:::::
+
+## Open Balls (cont.)
+
+::::: columns
+::: column
+In $\mathbb{R}^2$ with the Manhattan metric given by \vspace{2mm}
+
+$d((x_1,y_1),(x_2,y_2))$ \vspace{1mm}
+
+$=|x_1-x_2|+|y_1-y_2|$ \vspace{2mm}
+
+, the open ball $B(\vec{0},r)$ looks like
+
+![](metricspaces_files/pic3.png){fig-align="center" width="80%"}
+:::
+
+::: column
+In $\mathbb{R}^2$ with the Chebyshev metric given by \vspace{2mm}
+
+$d((x_1,y_1),(x_2,y_2))$ \vspace{1mm}
+
+$=max\{|x_1-x_2|,|y_1-y_2|\}$ \vspace{2mm}
+
+, the open ball $B(\vec{0},r)$ looks like
+
+![](metricspaces_files/pic2.png){fig-align="center" width="80%"}
+:::
+:::::
+
+## Geometry Induced by Distance
+
+::: block
+### Changing the Metric Changes the "Shape" of Space
+
+- **What is Geometry?** In topology, geometry is not fixed. The shape of a space is entirely dictated or *induced* by the distance function $d$ that we choose.
+- **The Definition of a "Circle":** A circle (or open ball) is simply a collection of points that share the *same distance* from a center.
+- **One Set, Three Different Geometries:** Even though we are looking at the exact same coordinate plane ($\mathbb{R}^2$), changing the definition of distance completely alters what a "unit circle" ($B(\vec{0},r)$) looks like:
+  - **Euclidean (**$L_2$): Induces a **standard round disc** (shortest path).
+  - **Manhattan (**$L_1$): Induces a **diamond shape** (grid-like path).
+  - **Chebyshev (**$L_\infty$): Induces a **square shape** (maximum coordinate difference).
+:::
+
+The "shape" of a space depends entirely on the "ruler" we use to measure it.
+
+## Summary & Conclusion
+
+- **Distance is Abstract:** A Metric Space $(X, d)$ generalizes the concept of distance beyond standard rulers and straight lines.
+- **Geometry is Flexible:** The choice of metric function $d$ completely dictates the geometric "shape" of the space (e.g., round discs vs. diamond grids).
+- **Foundation of Topology:** Understanding metrics is the crucial first step before diving deeper into continuous functions, limits, and abstract topological spaces.
+
+:::: {.callout-tip appearance="minimal" icon="false"}
+::: {style="text-align: center; margin-top: 50px;"}
+<h1>Thank You!</h1>
+
+<h3>Any Questions?</h3>
+:::
+::::
