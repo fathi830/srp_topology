@@ -182,11 +182,11 @@ $$x \in \partial A \iff  \forall U \in \tau \text{ with } x \in U, \; (U \cap A 
 
 noted that $U\cap(X\setminus A)$ can be simplify to $U\setminus A$ as illustrated below,
 
-![](week5/image1.png){fig-align="center" width="65%"}
+![](additional_sources/week5/image1.png){fig-align="center" width="65%"}
 
 ## Boundary (cont.)
 
-![](week5/image2.png){fig-align="center" width="100%"}
+![](additional_sources/week5/image2.png){fig-align="center" width="100%"}
 
 ## Relation
 
@@ -204,7 +204,7 @@ Let $A$ be a subset of a topological space $(X,\tau)$,
 \(iv\) $Cl(A^c)^c=A\setminus \partial A=Int(A)$.
 :::
 
-![](week5/image4.png){fig-align="center" width="72%"}
+![](additional_sources/week5/image4.png){fig-align="center" width="72%"}
 
 ## Relation (cont.)
 
@@ -222,7 +222,7 @@ Since we define Interior as a union of all open set, so $U$ must be one of them.
 
 Since we define closure as intersection of all closed set, so the closure itself must be a subset of any $C$.
 
-![](week5/image3.png){fig-align="center" width="51%"}
+![](additional_sources/week5/image3.png){fig-align="center" width="51%"}
 
 ## Relation (cont.)
 
@@ -250,7 +250,7 @@ For example, let $A=[a,b]$, then $Cl(A)=[a,b]$. So we can see that now $A=Cl(A)$
 
 ## Relation (cont.)
 
-![](week5/image4.png){fig-align="center" width="54%"}
+![](additional_sources/week5/image4.png){fig-align="center" width="54%"}
 
 ::: {.callout-note appearance="minimal"}
 \(viii\) $Int(A^c)=Cl(A)^c$.
